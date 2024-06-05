@@ -9,9 +9,13 @@ public class TongueTip : MonoBehaviour
     {
         if (other.CompareTag("Bug"))
         {
+          
             Debug.Log("Caught bug yum yum!");
 
             frogAttack.grabbedBug = other.gameObject; // Grab the bug
+            int bugPoint = frogAttack.grabbedBug.GetComponent<Bugs>().points;
+
+            UIManager.instance.PointPrompt(bugPoint, other.transform);
             frogAttack.RetractTongue();
             frogAttack.isAttacking = false;
         
