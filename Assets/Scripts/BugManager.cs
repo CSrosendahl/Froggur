@@ -17,7 +17,8 @@ public class BugManager : MonoBehaviour
 
 
     public GameObject[] bugPrefabs; // Array of different bug prefabs
-    public float spawnInterval = 2f; // Time interval between spawns
+    public float spawnIntervalFoodBug = 2f; // Time interval between spawns
+    public float spawnIntervalEvilBug = 5f;
     public int maxBugs = 10; // Maximum number of bugs that can be spawned at once
     public float spawnAreaWidth = 10f; // Width of the spawn area
     public float spawnAreaHeight = 5f; // Height of the spawn area
@@ -36,7 +37,8 @@ public class BugManager : MonoBehaviour
         float screenBottom = mainCamera.transform.position.y - mainCamera.orthographicSize;
         minY = screenBottom + (screenHeight * 0.4f); // Calculate 40% from the bottom of the screen
 
-        InvokeRepeating("SpawnBug", 0f, spawnInterval); // Start spawning bugs at regular intervals
+        InvokeRepeating("SpawnBug", 0f, spawnIntervalFoodBug); // Start spawning bugs at regular intervals
+        InvokeRepeating("SpawnEvilBug", 0f, spawnIntervalEvilBug);
     }
 
     private void Update()
@@ -58,15 +60,31 @@ public class BugManager : MonoBehaviour
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
 
-        int bugIndex = Random.Range(0, bugPrefabs.Length); // Select a random bug type
+        int bugIndex = Random.Range(0, bugPrefabs.Length-1); // Select a random bug type, excluding the evil bug
         Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
 
         currentBugCount++;
         UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
 
         bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
+
+
     }
 
+    void SpawnEvilBug()
+    {
+        if (!canSpawnBugs)
+        {
+            return;
+        }
+        float xPosition = Random.Range(-spawnAreaWidth / 2f, spawnAreaWidth / 2f);
+        float yPosition = Random.Range(minY, minY + spawnAreaHeight);
+
+        Vector2 spawnPosition = new Vector2(xPosition, yPosition);
+        Instantiate(bugPrefabs[5], spawnPosition, Quaternion.identity);
+
+    }
+ 
     public void BugDestroyed(BugSO bug, GameObject bugPrefab)
     {
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed
@@ -81,6 +99,19 @@ public class BugManager : MonoBehaviour
     public int GetCurrentBugCount()
     {
         return currentBugCount;
+    }
+    public void DestroyAllBugs()
+    {
+        canSpawnBugs = false;
+        GameObject[] bugs = GameObject.FindGameObjectsWithTag("Bug");
+        foreach (var bug in bugs)
+        {
+            Destroy(bug);
+        }
+        bugList.Clear();
+        currentBugCount = 0;
+    
+
     }
 
 

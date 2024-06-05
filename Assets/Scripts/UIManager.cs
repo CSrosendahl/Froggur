@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
    
 
     [Header("Background")]
-    public Sprite[] backgroundSprites;
     public Image backgroundImage;
 
     [Header ("Score")]
@@ -30,46 +29,149 @@ public class UIManager : MonoBehaviour
    
     [Header ("Timer")]
     public TextMeshProUGUI timerText;
-    public float currentTime = 60;
-    private bool timesUp;
+    public float currentGameTime = 5;
+    private bool gameTimerUp;
+    private bool gameTimerActive = true;
+    public TextMeshProUGUI countDownToStartText;
+    public float countDownToStart = 3.0f;
+    private bool countDownActive = false;
 
     [Header("Point Prompt")]
     public TextMeshProUGUI pointPrompt;
     private Transform grabbedBugTransform; // Transform of the grabbed bug
-    private int currentPoints; // Current points for the grabbed bug
+    private int bugPoints; // Current points for the grabbed bug
     private Vector3 initialPosition;
+
+    [Header("Fade")]
+    public Image fadeImage;
+
+    public FrogAttack frogAttackScript;
 
     void Start()
     {
-        backgroundImage.sprite = backgroundSprites[0];
+     
         bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
         scoreText.text = "Score: " + currentScore;
+      
+        
+       
     }
     private void Update()
     {
         UpdateTimer();
-     
+        CountDownTimer();
+
+
     }
 
+    #region Fader
+    public void FadeOut(float duration)
+    {
+        StartCoroutine(FadeToBlack(duration));
+    }
+
+    public void FadeIn(float duration)
+    {
+        StartCoroutine(FadeFromBlack(duration));
+    }
+
+    private IEnumerator FadeToBlack(float duration)
+    {
+        fadeImage.enabled = true;
+        Color color = fadeImage.color;
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Lerp(0, 1, elapsed / duration);
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        fadeImage.color = new Color(color.r, color.g, color.b, 1);
+        gameTimerActive = false;
+    }
+
+    private IEnumerator FadeFromBlack(float duration)
+    {
+        countDownActive = true;
+        Color color = fadeImage.color;
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Lerp(1, 0, elapsed / duration);
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        fadeImage.color = new Color(color.r, color.g, color.b, 0);
+       
+    }
+    #endregion
+
+    #region Timers
     private void UpdateTimer()
     {
-        if (currentTime > 0)
+        if(gameTimerActive)
         {
-            timesUp = false;
-            currentTime -= Time.deltaTime; // Decrement time
-            timerText.text = "Time: " + Mathf.Max(currentTime, 0).ToString("F2"); // Update timer text, ensure it doesn't go below 0
-
-            if (currentTime <= 0 && !timesUp)
+            if (currentGameTime > 0)
             {
-                timesUp = true;
-                Debug.Log("Time's up!");
+                gameTimerUp = false;
+                currentGameTime -= Time.deltaTime; // Decrement time
+                timerText.text = "Time: " + Mathf.Max(currentGameTime, 0).ToString("F2"); // Update timer text, ensure it doesn't go below 0
+
+                if (currentGameTime <= 0 && !gameTimerUp)
+                {
+                    countDownToStartText.enabled = true;
+                    countDownToStartText.text = "Time is up! You scored: " + currentScore;
+
+                    gameTimerUp = true;
+                    frogAttackScript.enabled = false;
+                    BugManager.instance.DestroyAllBugs();
+                    ResetScore();
+                    FadeOut(3);
+                    StartCoroutine(WaitToFadeIn());
+                }
             }
         }
+
+
+      
     }
 
+    public void CountDownTimer()
+    {
+        if (countDownActive)
+        {
+            countDownToStartText.enabled = true;
+            if (countDownToStart > 0)
+            {
+                countDownToStart -= Time.deltaTime;
+                countDownToStartText.text = Mathf.Ceil(countDownToStart).ToString();
+            }
+            else
+            {
+                countDownToStartText.text = "GO!";
+                countDownActive = false;
+                gameTimerActive = true;
+                currentGameTime = 60;
+                frogAttackScript.enabled = true;
+                StartCoroutine(WaitToRemoveCountDownText());
+                BugManager.instance.canSpawnBugs = true;
+            }
+        }
+
+    }
+    #endregion
+
+
+    #region Popup text score
     public void PointPrompt(int point, Transform bugTransform)
     {
-        currentPoints = point;
+        bugPoints = point;
         grabbedBugTransform = bugTransform;
 
         Vector3 offsetPosition = bugTransform.position + new Vector3(0.5f, 0.5f, 0); // Initial offset
@@ -115,7 +217,31 @@ public class UIManager : MonoBehaviour
         // After the animation is complete, hide the point prompt
         pointPrompt.enabled = false;
     }
+    #endregion
+
+ 
+
+
+    #region IEnumrators/Resetscore
+    IEnumerator WaitToFadeIn()
+    {
+        yield return new WaitForSeconds(4);
+        LevelManager.instance.NextLevel();
+        FadeIn(3f);
+    }
+    IEnumerator WaitToRemoveCountDownText()
+    {
+        yield return new WaitForSeconds(1);
+        countDownToStartText.enabled = false;
+    }
+
+    public void ResetScore()
+    {
+        currentScore = 0;
+        scoreText.text = "Score: " + currentScore;
+    }
+    #endregion
 }
 
-    
+
 
