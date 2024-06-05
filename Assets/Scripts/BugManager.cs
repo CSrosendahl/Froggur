@@ -27,6 +27,8 @@ public class BugManager : MonoBehaviour
     private int currentBugCount = 0; // Counter to keep track of the current number of bugs
     public List<BugSO> bugList = new List<BugSO>();
 
+    public bool canSpawnBugs = true;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -43,6 +45,12 @@ public class BugManager : MonoBehaviour
     }
     void SpawnBug()
     {
+        if(!canSpawnBugs)
+        {
+            Debug.Log("Bug spawner inactive");
+            return;
+        }
+
         if (currentBugCount >= maxBugs) return; // Do not spawn if the maximum number of bugs is reached
 
         float xPosition = Random.Range(-spawnAreaWidth / 2f, spawnAreaWidth / 2f);

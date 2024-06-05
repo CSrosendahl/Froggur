@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
   
     void Start()
     {
-        backgroundImage.sprite = backgroundSprites[1];
+        backgroundImage.sprite = backgroundSprites[0];
         bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
         scoreText.text = "Score: " + currentScore;
     }

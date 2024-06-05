@@ -241,6 +241,7 @@ MonoBehaviour:
   spawnAreaWidth: 10
   spawnAreaHeight: 5
   bugList: []
+  canSpawnBugs: 1
 --- !u!4 &186300223
 Transform:
   m_ObjectHideFlags: 0
