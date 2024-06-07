@@ -66,7 +66,7 @@ public class BugManager : MonoBehaviour
         currentBugCount++;
         UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
 
-        bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
+      //  bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
 
 
     }
@@ -84,7 +84,21 @@ public class BugManager : MonoBehaviour
         Instantiate(bugPrefabs[5], spawnPosition, Quaternion.identity);
 
     }
- 
+    public void UpdateSpawnIntervals(float newFoodBugInterval, float newEvilBugInterval)
+    {
+        // Cancel the existing invocations
+        CancelInvoke("SpawnBug");
+        CancelInvoke("SpawnEvilBug");
+
+        // Update the intervals
+        spawnIntervalFoodBug = newFoodBugInterval;
+        spawnIntervalEvilBug = newEvilBugInterval;
+
+        // Reinvoke with the new intervals
+        InvokeRepeating("SpawnBug", 0f, spawnIntervalFoodBug);
+        InvokeRepeating("SpawnEvilBug", 0f, spawnIntervalEvilBug);
+    }
+
     public void BugDestroyed(BugSO bug, GameObject bugPrefab)
     {
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed

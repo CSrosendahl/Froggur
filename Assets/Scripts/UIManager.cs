@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
     [Header("Fade")]
     public Image fadeImage;
 
-    public FrogAttack frogAttackScript;
+ [HideInInspector]public FrogAttack frogAttackScript;
 
     void Start()
     {
@@ -155,9 +155,10 @@ public class UIManager : MonoBehaviour
             else
             {
                 countDownToStartText.text = "GO!";
+                countDownToStart = 3.0f; 
                 countDownActive = false;
                 gameTimerActive = true;
-                currentGameTime = 60;
+                currentGameTime = 5;
                 frogAttackScript.enabled = true;
                 StartCoroutine(WaitToRemoveCountDownText());
                 BugManager.instance.canSpawnBugs = true;
@@ -178,7 +179,7 @@ public class UIManager : MonoBehaviour
 
         if (point > 0)
         {
-            pointPrompt.text = point.ToString();
+            pointPrompt.text = "+" + point.ToString();
             pointPrompt.color = Color.green;
         }
         else
@@ -228,6 +229,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(4);
         LevelManager.instance.NextLevel();
         FadeIn(3f);
+        LevelManager.instance.InitLevelVariables();
     }
     IEnumerator WaitToRemoveCountDownText()
     {

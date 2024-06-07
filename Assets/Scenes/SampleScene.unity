@@ -371,8 +371,8 @@ MonoBehaviour:
   - {fileID: 7363494281755032772, guid: 04be927e37e662a4ba4df3e4345d728a, type: 3}
   - {fileID: 8093402229718502246, guid: 39797a782e9f2fb48a512e0e1bcd3781, type: 3}
   - {fileID: 5641128693585618765, guid: 948e676cfa56f894cb8cf48125794607, type: 3}
-  spawnIntervalFoodBug: 2
-  spawnIntervalEvilBug: 5
+  spawnIntervalFoodBug: 1
+  spawnIntervalEvilBug: 4
   maxBugs: 10
   spawnAreaWidth: 10
   spawnAreaHeight: 5
