@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bugName: Fly
   changeDirectionInterval: 1
-  bugSpeed: 3
+  bugSpeed: 7
   points: 2
   bugType: 0

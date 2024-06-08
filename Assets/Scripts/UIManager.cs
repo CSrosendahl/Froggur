@@ -30,12 +30,12 @@ public class UIManager : MonoBehaviour
    
     [Header ("Timer")]
     public TextMeshProUGUI timerText;
-    public float currentGameTime = 5;
+    public float currentGameTime = 60;
     private bool gameTimerUp;
-    private bool gameTimerActive = true;
+    private bool gameTimerActive = false;
     public TextMeshProUGUI countDownToStartText;
     public float countDownToStart = 3.0f;
-    private bool countDownActive = false;
+    private bool countDownActive = true;
 
     [Header("Point Prompt")]
     public TextMeshProUGUI pointPrompt;
@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
                 countDownToStart = 3.0f; 
                 countDownActive = false;
                 gameTimerActive = true;
-                currentGameTime = 5;
+                currentGameTime = 60;
                 frogAttackScript.enabled = true;
                 StartCoroutine(WaitToRemoveCountDownText());
                 BugManager.instance.canSpawnBugs = true;
@@ -256,6 +256,12 @@ public class UIManager : MonoBehaviour
         scoreText.text = "Score: " + currentScore;
     }
     #endregion
+
+    // set level duration 
+    public float SetLevelDuration(float duration)
+    {
+        return duration;
+    }
 }
 
 

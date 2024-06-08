@@ -28,7 +28,7 @@ public class BugManager : MonoBehaviour
     private int currentBugCount = 0; // Counter to keep track of the current number of bugs
     public List<BugSO> bugList = new List<BugSO>();
 
-    public bool canSpawnBugs = true;
+    public bool canSpawnBugs = false;
 
     void Start()
     {
