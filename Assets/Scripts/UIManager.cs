@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public int currentScore = 0;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bugsRemainingText;
+    public TextMeshProUGUI combinedScore;
    
     [Header ("Timer")]
     public TextMeshProUGUI timerText;
@@ -45,7 +46,7 @@ public class UIManager : MonoBehaviour
     [Header("Fade")]
     public Image fadeImage;
 
- [HideInInspector]public FrogAttack frogAttackScript;
+    [HideInInspector]public FrogAttack frogAttackScript;
 
     void Start()
     {
@@ -131,7 +132,6 @@ public class UIManager : MonoBehaviour
                     gameTimerUp = true;
                     frogAttackScript.enabled = false;
                     BugManager.instance.DestroyAllBugs();
-                    ResetScore();
                     FadeOut(3);
                     StartCoroutine(WaitToFadeIn());
                 }
@@ -220,16 +220,29 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
- 
 
 
+    public void UpdateScore(int points)
+    {
+        currentScore += points;
+        DisplayScore();
+    }
+
+
+    // Display current score
+    public void DisplayScore()
+    {
+        scoreText.text = "Score: " + currentScore;
+        combinedScore.text = "Overall Score: " + LevelManager.instance.levelScoreData.GetOverallScore();
+    }
     #region IEnumrators/Resetscore
     IEnumerator WaitToFadeIn()
     {
         yield return new WaitForSeconds(4);
+
         LevelManager.instance.NextLevel();
         FadeIn(3f);
-        LevelManager.instance.InitLevelVariables();
+        
     }
     IEnumerator WaitToRemoveCountDownText()
     {

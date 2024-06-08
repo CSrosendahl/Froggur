@@ -60,7 +60,7 @@ public class BugManager : MonoBehaviour
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
 
-        int bugIndex = Random.Range(0, bugPrefabs.Length-1); // Select a random bug type, excluding the evil bug
+        int bugIndex = Random.Range(0, bugPrefabs.Length-1); // Select a random bug type, excluding the evil bug, which is always at the last index of the list
         Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
 
         currentBugCount++;
@@ -104,7 +104,6 @@ public class BugManager : MonoBehaviour
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed
         bugList.Remove(bug);
         currentBugCount--; // Decrease the bug count when a bug is destroyed
-        UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
         Destroy(bugPrefab);
       
     }

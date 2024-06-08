@@ -120,7 +120,9 @@ public class FrogAttack : MonoBehaviour
 
         if (grabbedBug != null)
         {
-            UpdateScore();
+            Bugs bugScript = grabbedBug.GetComponent<Bugs>();
+
+            UIManager.instance.UpdateScore(bugScript.points);
             BugManager.instance.BugDestroyed(grabbedBug.GetComponent<Bugs>().bugSO, grabbedBug);
             grabbedBug = null;
           
@@ -128,12 +130,6 @@ public class FrogAttack : MonoBehaviour
     }
 
 
-    public void UpdateScore()
-    {
-        Bugs bugScript = grabbedBug.GetComponent<Bugs>();
-
-        UIManager.instance.currentScore += bugScript.points;
-        UIManager.instance.scoreText.text = "Score: " + UIManager.instance.currentScore;
-    }
+   
 
 }
