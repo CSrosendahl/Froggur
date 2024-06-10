@@ -20,8 +20,8 @@ public class FrogAttack : MonoBehaviour
     {
         // Ensure the LineRenderer is properly configured
         tongueLineRenderer.positionCount = 2; // Set the position count to 2
-        tongueLineRenderer.startWidth = 0.1f; // Set the start width
-        tongueLineRenderer.endWidth = 0.1f; // Set the end width
+        //tongueLineRenderer.startWidth = 0.1f; // Set the start width
+        //tongueLineRenderer.endWidth = 0.1f; // Set the end width
         tongueLineRenderer.startColor = Color.red; // Set the start color
         tongueLineRenderer.endColor = Color.red; // Set the end color
         tongueLineRenderer.enabled = false; // Hide the tongue initially
@@ -62,17 +62,26 @@ public class FrogAttack : MonoBehaviour
 
     void ExtendTongue()
     {
-        Vector3 endPosition = Vector3.MoveTowards(tongueLineRenderer.GetPosition(1), targetPosition, tongueSpeed * Time.deltaTime);
+        // Ensure the tongue starts from the correct position
+        tongueLineRenderer.SetPosition(0, attackPoint.position); // Dynamically update the start point
+
+        // Calculate direction and normalize
+        Vector3 direction = (targetPosition - tongueLineRenderer.GetPosition(0)).normalized;
+
+        // Add a small offset (e.g., 0.5f) to the target position
+        Vector3 extendedTargetPosition = targetPosition + direction * 1.5f;
+
+        Vector3 endPosition = Vector3.MoveTowards(tongueLineRenderer.GetPosition(1), extendedTargetPosition, tongueSpeed * Time.deltaTime);
 
         tongueLineRenderer.SetPosition(1, endPosition); // Update the end point of the tongue
         tongueTip.transform.position = endPosition; // Move the tongue tip to the end point
 
         // Rotate the tongue tip to face the target position
-        Vector3 direction = endPosition - tongueLineRenderer.GetPosition(0);
+        direction = endPosition - tongueLineRenderer.GetPosition(0);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         tongueTip.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        if (Vector3.Distance(endPosition, targetPosition) < 0.1f) // Check if the tongue has reached the target
+        if (Vector3.Distance(endPosition, extendedTargetPosition) < 0.1f) // Check if the tongue has reached the extended target
         {
             if (grabbedBug == null)
             {
@@ -110,6 +119,9 @@ public class FrogAttack : MonoBehaviour
                 grabbedBug.transform.position = retractPosition; // Move the bug along with the tongue tip
             }
 
+            // Update the start position dynamically
+            tongueLineRenderer.SetPosition(0, attackPoint.position);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -125,11 +137,6 @@ public class FrogAttack : MonoBehaviour
             UIManager.instance.UpdateScore(bugScript.points);
             BugManager.instance.BugDestroyed(grabbedBug.GetComponent<Bugs>().bugSO, grabbedBug);
             grabbedBug = null;
-          
         }
     }
-
-
-   
-
 }
