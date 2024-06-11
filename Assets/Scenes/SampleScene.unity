@@ -371,6 +371,7 @@ MonoBehaviour:
   - {fileID: 7363494281755032772, guid: 04be927e37e662a4ba4df3e4345d728a, type: 3}
   - {fileID: 8093402229718502246, guid: 39797a782e9f2fb48a512e0e1bcd3781, type: 3}
   - {fileID: 5641128693585618765, guid: 948e676cfa56f894cb8cf48125794607, type: 3}
+  - {fileID: 9101010966337310667, guid: f99edbac5b77efd4797ade69699e1a30, type: 3}
   spawnIntervalFoodBug: 32
   spawnIntervalEvilBug: 4
   maxBugs: 10
@@ -1252,6 +1253,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3aabe7af051dd04686de002fe0b6f32, type: 3}
   currentLevel: 0
   levelScoreData: {fileID: 11400000, guid: 4267cffb72f3cbd4c9e6998699314638, type: 2}
+  level0SpawnTimer: 0100000005000000
+  level1SpawnTimer: 0200000005000000
+  level2SpawnTimer: 0200000005000000
+  level3SpawnTimer: 0200000004000000
+  level4SpawnTimer: 0200000003000000
+  level5SpawnTimer: 0100000002000000
 --- !u!4 &1570168721
 Transform:
   m_ObjectHideFlags: 0
@@ -1452,7 +1459,7 @@ MonoBehaviour:
   bugsRemainingText: {fileID: 2125059660}
   combinedScore: {fileID: 1584193049}
   timerText: {fileID: 771502413}
-  currentGameTime: 60
+  currentGameTime: 30
   countDownToStartText: {fileID: 117377671}
   countDownToStart: 3
   pointPrompt: {fileID: 2053115578}
@@ -1868,6 +1875,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 371837001721113968, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: waterAttackGO
+      value: 
+      objectReference: {fileID: 3186921442233316307, guid: f41924efdbc7a334c94a2dad8f66b61c, type: 3}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1885,6 +1896,18 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.64102954
+      objectReference: {fileID: 0}
+    - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.42075467
+      objectReference: {fileID: 0}
+    - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1894,7 +1917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
-      value: 0.41372353
+      value: 0.4033628
       objectReference: {fileID: 0}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[2].time
@@ -1906,11 +1929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.09769297
+      value: 0.28935862
       objectReference: {fileID: 0}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
-      value: 0.5375209
+      value: 0.19585371
       objectReference: {fileID: 0}
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[2].value
@@ -1963,6 +1986,10 @@ PrefabInstance:
     - target: {fileID: 591989789641400185, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[2].outWeight
       value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863075533270375134, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3915877615763290436, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_LocalPosition.x

@@ -13,10 +13,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    [Header("Level Settings")]
     public Sprite[] backgroundLevelSprites;
     public int currentLevel;
     public LevelScoreData levelScoreData;
 
+    [Header("Spawn Timers")]
+    public int[] level0SpawnTimer;
+    public int[] level1SpawnTimer;
+    public int[] level2SpawnTimer;
+    public int[] level3SpawnTimer;
+    public int[] level4SpawnTimer;
+    public int[] level5SpawnTimer;
     private void Start()
     {
         levelScoreData.ResetScores();
@@ -62,30 +70,59 @@ public class LevelManager : MonoBehaviour
 
     public void InitLevelVariables()
     {
+        float foodBugSpawnTime = 0f;
+        float evilBugSpawnTime = 0f;
+
         switch (currentLevel)
         {
             case 0:
-                BugManager.instance.UpdateSpawnIntervals(1f, 5.0f);
+                if (level0SpawnTimer.Length >= 2)
+                {
+                    foodBugSpawnTime = level0SpawnTimer[0];
+                    evilBugSpawnTime = level0SpawnTimer[1];
+                }
                 break;
             case 1:
-                BugManager.instance.UpdateSpawnIntervals(1f, 4.0f);
+                if (level1SpawnTimer.Length >= 2)
+                {
+                    foodBugSpawnTime = level1SpawnTimer[0];
+                    evilBugSpawnTime = level1SpawnTimer[1];
+                }
                 break;
             case 2:
-                BugManager.instance.UpdateSpawnIntervals(1.0f, 3.0f);
+                if (level2SpawnTimer.Length >= 2)
+                {
+                    foodBugSpawnTime = level2SpawnTimer[0];
+                    evilBugSpawnTime = level2SpawnTimer[1];
+                }
                 break;
             case 3:
-                BugManager.instance.UpdateSpawnIntervals(1.0f, 2.0f);
+                if (level3SpawnTimer.Length >= 2)
+                {
+                    foodBugSpawnTime = level3SpawnTimer[0];
+                    evilBugSpawnTime = level3SpawnTimer[1];
+                }
                 break;
             case 4:
-                BugManager.instance.UpdateSpawnIntervals(1.0f, 1.0f);
+                if (level4SpawnTimer.Length >= 2)
+                {
+                    foodBugSpawnTime = level4SpawnTimer[0];
+                    evilBugSpawnTime = level4SpawnTimer[1];
+                }
                 break;
             case 5:
-                BugManager.instance.UpdateSpawnIntervals(1.0f, 0.8f);
+                if (level5SpawnTimer.Length >= 2)
+                {
+                    foodBugSpawnTime = level5SpawnTimer[0];
+                    evilBugSpawnTime = level5SpawnTimer[1];
+                }
                 break;
             default:
                 Debug.LogError("Level not recognized. Default settings applied.");
                 break;
         }
+
+        BugManager.instance.UpdateSpawnIntervals(foodBugSpawnTime, evilBugSpawnTime);
 
         UIManager.instance.scoreText.text = "Score: " + levelScoreData.GetScoreForLevel(currentLevel);
     }

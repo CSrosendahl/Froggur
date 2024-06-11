@@ -17,6 +17,7 @@ public class BugManager : MonoBehaviour
 
 
     public GameObject[] bugPrefabs; // Array of different bug prefabs
+
     public float spawnIntervalFoodBug = 2f; // Time interval between spawns
     public float spawnIntervalEvilBug = 5f;
     public int maxBugs = 10; // Maximum number of bugs that can be spawned at once
@@ -60,7 +61,7 @@ public class BugManager : MonoBehaviour
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
 
-        int bugIndex = Random.Range(0, bugPrefabs.Length-1); // Select a random bug type, excluding the evil bug, which is always at the last index of the list
+        int bugIndex = Random.Range(0, bugPrefabs.Length-2); // Select a random bug type, excluding the evil bug, which is always at the last index of the list
         Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
 
         currentBugCount++;
@@ -81,7 +82,12 @@ public class BugManager : MonoBehaviour
         float yPosition = Random.Range(minY, minY + spawnAreaHeight);
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
-        Instantiate(bugPrefabs[5], spawnPosition, Quaternion.identity);
+
+        int evilBugIndex = Random.Range(5, 7); // Generates either 5 or 6
+        Instantiate(bugPrefabs[evilBugIndex], spawnPosition, Quaternion.identity);
+
+        
+
 
     }
     public void UpdateSpawnIntervals(float newFoodBugInterval, float newEvilBugInterval)

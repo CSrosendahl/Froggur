@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
                 countDownToStart = 3.0f; 
                 countDownActive = false;
                 gameTimerActive = true;
-                currentGameTime = 60;
+                currentGameTime = 30;
                 frogAttackScript.enabled = true;
                 StartCoroutine(WaitToRemoveCountDownText());
                 BugManager.instance.canSpawnBugs = true;
