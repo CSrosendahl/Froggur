@@ -239,6 +239,7 @@ public class UIManager : MonoBehaviour
     IEnumerator WaitToFadeIn()
     {
         yield return new WaitForSeconds(4);
+       
 
         LevelManager.instance.NextLevel();
         FadeIn(3f);

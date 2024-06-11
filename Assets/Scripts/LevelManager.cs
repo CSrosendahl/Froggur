@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -25,6 +26,9 @@ public class LevelManager : MonoBehaviour
     public int[] level3SpawnTimer;
     public int[] level4SpawnTimer;
     public int[] level5SpawnTimer;
+
+  
+
     private void Start()
     {
         levelScoreData.ResetScores();
@@ -52,12 +56,16 @@ public class LevelManager : MonoBehaviour
         if (level < 0 || level >= backgroundLevelSprites.Length)
         {
             Debug.LogError("Level index out of bounds. Level: " + level);
-            return;
+            EndGame();
+           
+        }else
+        {
+            currentLevel = level;
+            UIManager.instance.backgroundImage.sprite = backgroundLevelSprites[currentLevel];
+            InitLevelVariables();
         }
 
-        currentLevel = level;
-        UIManager.instance.backgroundImage.sprite = backgroundLevelSprites[currentLevel];
-        InitLevelVariables();
+      
     }
 
 
@@ -136,5 +144,13 @@ public class LevelManager : MonoBehaviour
     public int GetOverallScore()
     {
         return levelScoreData.overallScore;
+    }
+    public void EndGame()
+    {
+     
+        SaveCurrentLevelScore(); // Save score before changing level
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EndScreen");
+        Debug.Log("Last level");
     }
 }
