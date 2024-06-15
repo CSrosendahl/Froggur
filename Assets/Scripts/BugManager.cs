@@ -69,7 +69,6 @@ public class BugManager : MonoBehaviour
 
       //  bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
 
-
     }
 
     void SpawnEvilBug()
@@ -83,10 +82,22 @@ public class BugManager : MonoBehaviour
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
 
-        int evilBugIndex = Random.Range(5, 7); // Generates either 5 or 6
+        int totalBugs = bugPrefabs.Length;
+
+        // Ensure there are at least two bugs to spawn
+        if (totalBugs < 2)
+        {
+            Debug.LogError("Not enough bug prefabs to spawn the last two bugs.");
+            return;
+        }
+
+        // Generate a random index to spawn one of the last two bugs
+        int evilBugIndex = Random.Range(totalBugs - 2, totalBugs);
+
+        // Instantiate the selected bug prefab at the spawn position
         Instantiate(bugPrefabs[evilBugIndex], spawnPosition, Quaternion.identity);
 
-        
+
 
 
     }

@@ -15,5 +15,6 @@ MonoBehaviour:
   bugName: Wasp
   changeDirectionInterval: 2
   bugSpeed: 4
-  points: -1
+  points: 1
   bugType: 3
+  tier: 0

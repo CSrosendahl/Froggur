@@ -13,7 +13,10 @@ public class BugSO : ScriptableObject
     public int points = 1;
 
 
+
     public BugType bugType;
+    public Tier tier;
+
     public enum BugType
     {
         Fly,
@@ -21,6 +24,14 @@ public class BugSO : ScriptableObject
         Mosquito,
         Wasp,
         DaddyLongLegs
+    }
+    public enum Tier
+    {
+        Tier0,
+        Tier1,
+        Tier2,
+        Tier3,
+        Tier4
     }
 
     //private void OnValidate()

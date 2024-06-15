@@ -3,26 +3,28 @@ using System.Collections;
 
 public class FrogAttack : MonoBehaviour
 {
-  
     [Header("References")]
-    public LineRenderer tongueLineRenderer; // Reference to the LineRenderer component
+    public LineRenderer tongueLineRenderer; // Reference to the LineRenderer component for tongue attack
     public GameObject tongueTip; // Reference to the TongueTip GameObject
     public Transform attackPoint; // Reference to the AttackPoint GameObject
     public Collider2D tongueCollider; // Reference to the tongue collider
     public Animator frogAnim; // Reference to the frog animator
+   
 
     // Tongue Settings
     [Header("Tongue Settings")]
     public float tongueSpeed = 5f; // Speed at which the tongue extends
     public float retractSpeed = 0.5f; // Speed at which the tongue retracts
 
-    // Water Attack Settings (Uncomment if needed)
-    //[Header("Water Attack Settings")]
-    //public GameObject waterAttackGO; // Reference to the water attack GameObject
-    //public float waterAttackForce = 10f; // Force applied to the water attack
+    // Water Attack Settings
+    [Header("Water Attack Settings")]
+    public GameObject waterAttackGO; // Reference to the water attack GameObject
+    public float waterAttackForce = 10f; // Force applied to the water attack
+    public float waterBurstDelay = 0.1f; // Delay between each water droplet in the burst
+
 
     // Internal Variables
-    private Vector3 targetPosition; // Position where the tongue extends to
+    private Vector3 targetPosition; // Position where the tongue or water extends to
     [HideInInspector] public bool isAttacking = false; // Flag to check if the frog is attacking
     [HideInInspector] public GameObject grabbedBug; // Reference to the grabbed bug
 
@@ -32,13 +34,15 @@ public class FrogAttack : MonoBehaviour
         tongueLineRenderer.positionCount = 2; // Set the position count to 2
         tongueLineRenderer.enabled = false; // Hide the tongue initially
 
+ 
+
         tongueTip.SetActive(false); // Hide the tongue tip initially
         tongueCollider.enabled = false; // Disable the collider initially
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttacking) // Detect mouse click
+        if (Input.GetMouseButtonDown(0) && !isAttacking) // Detect left mouse click for tongue attack
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0; // Set z to 0 for 2D
@@ -47,12 +51,14 @@ public class FrogAttack : MonoBehaviour
             StartAttack();
         }
 
-        //if (Input.GetMouseButtonDown(1) && !isAttacking) // Detect right mouse click for water attack
-        //{
-        //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    mousePos.z = 0; // Set z to 0 for 2D
-        //    WaterAttack(mousePos);
-        //}
+        if (Input.GetMouseButtonDown(1) && !isAttacking) // Detect right mouse click for water attack
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0; // Set z to 0 for 2D
+            targetPosition = mousePos; // Set the target position to the clicked position
+            frogAnim.SetTrigger("Attack");
+            StartCoroutine(WaterBurstAttack(targetPosition));
+        }
 
         if (isAttacking)
         {
@@ -153,25 +159,34 @@ public class FrogAttack : MonoBehaviour
         }
     }
 
-    //public void WaterAttack(Vector3 targetPosition)
-    //{
-    //    // Instantiate the water attack GameObject at the attack point
-    //    GameObject waterAttack = Instantiate(waterAttackGO, attackPoint.position, Quaternion.identity);
+    private IEnumerator WaterBurstAttack(Vector3 targetPosition)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            WaterAttack(targetPosition);
+            yield return new WaitForSeconds(waterBurstDelay);
+        }
+    }
 
-    //    // Calculate the direction to the target position
-    //    Vector3 direction = (targetPosition - attackPoint.position).normalized;
+    public void WaterAttack(Vector3 targetPosition)
+    {
+        // Instantiate the water attack GameObject at the attack point
+        GameObject waterAttack = Instantiate(waterAttackGO, attackPoint.position, Quaternion.identity);
 
-    //    // Calculate the angle in degrees
-    //    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Calculate the direction to the target position
+        Vector3 direction = (targetPosition - attackPoint.position).normalized;
 
-    //    // Set the rotation of the water attack to match the direction
-    //    waterAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
+        // Calculate the angle in degrees
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-    //    // Apply a force to the water attack in the calculated direction
-    //    Rigidbody2D rb = waterAttack.GetComponent<Rigidbody2D>();
-    //    if (rb != null)
-    //    {
-    //        rb.AddForce(direction * waterAttackForce, ForceMode2D.Impulse);
-    //    }
-    //}
+        // Set the rotation of the water attack to match the direction
+        waterAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        // Apply a force to the water attack in the calculated direction
+        Rigidbody2D rb = waterAttack.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.AddForce(direction * waterAttackForce, ForceMode2D.Impulse);
+        }
+    }
 }
