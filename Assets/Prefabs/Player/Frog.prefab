@@ -312,7 +312,10 @@ MonoBehaviour:
   tongueSpeed: 35
   retractSpeed: 0.5
   waterAttackGO: {fileID: 7869623461835421046, guid: 27e40c8581fd1de47a0dabc40324d403, type: 3}
-  waterAttackForce: 30
+  waterAttackForce: 15
+  waterBurstDelay: 0.1
+  waterAttackCooldown: 5
+  canWaterAttack: 1
   isAttacking: 0
   grabbedBug: {fileID: 0}
 --- !u!120 &591989789641400185

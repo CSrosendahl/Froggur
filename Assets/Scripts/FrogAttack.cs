@@ -21,6 +21,8 @@ public class FrogAttack : MonoBehaviour
     public GameObject waterAttackGO; // Reference to the water attack GameObject
     public float waterAttackForce = 10f; // Force applied to the water attack
     public float waterBurstDelay = 0.1f; // Delay between each water droplet in the burst
+    public float waterAttackCooldown = 2f; // Cooldown duration for the water attack
+    public bool canWaterAttack = true;
 
 
     // Internal Variables
@@ -47,18 +49,48 @@ public class FrogAttack : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0; // Set z to 0 for 2D
             targetPosition = mousePos; // Set the target position to the clicked position
-            frogAnim.SetTrigger("Attack");
+            frogAnim.SetTrigger("TongueAttack");
             StartAttack();
         }
 
-        if (Input.GetMouseButtonDown(1) && !isAttacking) // Detect right mouse click for water attack
+        if (Input.GetMouseButtonDown(1) && canWaterAttack && !isAttacking) // Detect right mouse click for water attack
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0; // Set z to 0 for 2D
             targetPosition = mousePos; // Set the target position to the clicked position
-            frogAnim.SetTrigger("Attack");
+            frogAnim.SetTrigger("WaterAttack");
             StartCoroutine(WaterBurstAttack(targetPosition));
+            StartCoroutine(WaterAttackCooldown());      
         }
+
+        #region Touch and double touch
+        //if (Input.touchCount > 0) // Detect touch input
+        //{
+        //    Touch touch = Input.GetTouch(0);
+        //    Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+        //    touchPos.z = 0; // Set z to 0 for 2D
+
+        //    if (touch.phase == TouchPhase.Began && !isAttacking)
+        //    {
+        //        if (Input.touchCount == 1) // Single touch for tongue attack
+        //        {
+        //            targetPosition = touchPos; // Set the target position to the touch position
+        //            frogAnim.SetTrigger("TongueAttack");
+        //            StartAttack();
+        //        }
+        //        else if (Input.touchCount == 2 && canWaterAttack) // Two-finger touch for water attack
+        //        {
+        //            Touch secondTouch = Input.GetTouch(1);
+        //            Vector3 secondTouchPos = Camera.main.ScreenToWorldPoint(secondTouch.position);
+        //            secondTouchPos.z = 0; // Set z to 0 for 2D
+        //            targetPosition = secondTouchPos; // Set the target position to the second touch position
+        //            frogAnim.SetTrigger("WaterAttack");
+        //            StartCoroutine(WaterBurstAttack(targetPosition));
+        //            StartCoroutine(WaterAttackCooldown());
+        //        }
+        //    }
+        //}
+        #endregion
 
         if (isAttacking)
         {
@@ -188,5 +220,14 @@ public class FrogAttack : MonoBehaviour
         {
             rb.AddForce(direction * waterAttackForce, ForceMode2D.Impulse);
         }
+    }
+
+    private IEnumerator WaterAttackCooldown()
+    {
+        canWaterAttack = false;
+        UIManager.instance.WaterAttackOnCoolDown();
+        yield return new WaitForSeconds(waterAttackCooldown);
+        UIManager.instance.WaterAttackOffCoolDown();
+        canWaterAttack = true;
     }
 }

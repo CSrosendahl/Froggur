@@ -46,6 +46,9 @@ public class UIManager : MonoBehaviour
     [Header("Fade")]
     public Image fadeImage;
 
+    [Header("Other")]
+    public Image waterAttackImage;
+
     [HideInInspector]public FrogAttack frogAttackScript;
 
     void Start()
@@ -262,6 +265,15 @@ public class UIManager : MonoBehaviour
     public float SetLevelDuration(float duration)
     {
         return duration;
+    }
+
+    public void WaterAttackOnCoolDown()
+    {
+        waterAttackImage.color = Color.black;
+    }
+    public void WaterAttackOffCoolDown()
+    {
+        waterAttackImage.color = Color.white;
     }
 }
 
