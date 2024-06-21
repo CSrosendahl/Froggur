@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 532297276}
   - component: {fileID: 532297275}
   m_Layer: 7
-  m_Name: ActivateWaterAttack
+  m_Name: ActivateWaterAttackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1721,6 +1721,7 @@ MonoBehaviour:
   pointPrompt: {fileID: 2053115578}
   fadeImage: {fileID: 847692829}
   waterAttackImage: {fileID: 532297276}
+  waterAttackButton: {fileID: 532297275}
   frogAttackScript: {fileID: 535670987}
 --- !u!1 &1905617862
 GameObject:

@@ -131,6 +131,7 @@ public class LevelManager : MonoBehaviour
         }
 
         BugManager.instance.UpdateSpawnIntervals(foodBugSpawnTime, evilBugSpawnTime);
+        UIManager.instance.ResetWaterAttackOnLevelChange();
 
         UIManager.instance.scoreText.text = "Score: " + levelScoreData.GetScoreForLevel(currentLevel);
     }

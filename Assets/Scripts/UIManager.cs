@@ -27,7 +27,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Timer")]
     public TextMeshProUGUI timerText;
-    public float currentGameTime = 60;
+    private float currentGameTime = 0;
+    public float gameTime = 60;
     private bool gameTimerUp;
     private bool gameTimerActive = false;
     public TextMeshProUGUI countDownToStartText;
@@ -45,11 +46,14 @@ public class UIManager : MonoBehaviour
 
     [Header("Other")]
     public Image waterAttackImage;
+    public Button waterAttackButton;
 
     [HideInInspector] public FrogAttack frogAttackScript;
 
     void Start()
     {
+        currentGameTime = gameTime;
+        frogAttackScript.AttackState(false);
         bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
         scoreText.text = "Score: " + currentScore;
     }
@@ -121,10 +125,10 @@ public class UIManager : MonoBehaviour
                 if (currentGameTime <= 0 && !gameTimerUp)
                 {
                     countDownToStartText.enabled = true;
-                    countDownToStartText.text = "Time is up! You scored: " + currentScore;
-
+                    countDownToStartText.text =  "Time is up! You scored: " + currentScore;
+                    
                     gameTimerUp = true;
-                    frogAttackScript.enabled = false;
+                    frogAttackScript.AttackState(false);
                     BugManager.instance.DestroyAllBugs();
                     FadeOut(3);
                     StartCoroutine(WaitToFadeIn());
@@ -149,8 +153,9 @@ public class UIManager : MonoBehaviour
                 countDownToStart = 3.0f;
                 countDownActive = false;
                 gameTimerActive = true;
-                currentGameTime = 30;
-                frogAttackScript.enabled = true;
+               
+                currentGameTime = gameTime;
+                frogAttackScript.AttackState(true);
                 StartCoroutine(WaitToRemoveCountDownText());
                 BugManager.instance.canSpawnBugs = true;
             }
@@ -251,28 +256,26 @@ public class UIManager : MonoBehaviour
 
     public void WaterAttackOnCoolDown()
     {
-     //   waterAttackImage.color = Color.black;
+    
         waterAttackImage.fillAmount = 0;
         waterAttackImage.color = Color.white;
-        StartCoroutine(GradualFill(waterAttackImage, frogAttackScript.waterAttackCooldown));
+        frogAttackScript.canWaterAttack = false;
+       // StartCoroutine(GradualFill(waterAttackImage, frogAttackScript.waterAttackCooldown));
     }
 
-    public void WaterAttackOffCoolDown()
+    public void ReplenishWaterAttack(float replenishAmount)
     {
-      //  waterAttackImage.color = Color.white;
-    }
-
-    private IEnumerator GradualFill(Image image, float duration)
-    {
-        float elapsed = 0f;
-        while (elapsed < duration)
+        if(waterAttackImage.fillAmount == 1f)
         {
-            elapsed += Time.deltaTime;
-            image.fillAmount = Mathf.Clamp01(elapsed / duration);
-            yield return null;
+            frogAttackScript.canWaterAttack = true;
+            return;
         }
-        image.fillAmount = 1f;
+    
+        waterAttackImage.fillAmount += replenishAmount;
+
     }
+
+ 
 
     public void WaterAttackActive()
     {
@@ -283,5 +286,50 @@ public class UIManager : MonoBehaviour
         {
             waterAttackImage.color = Color.white;
         }
+    }
+    public void ResetWaterAttackOnLevelChange()
+    {
+        
+        waterAttackImage.fillAmount = 1;
+        waterAttackImage.color = Color.white;
+        frogAttackScript.canWaterAttack = true;
+    
+    }
+
+    public void PromptOnLevelChange() // Not in use
+    {
+        
+        
+        if(BugManager.instance.GetCurrentBugCount() == 0)
+        {
+          
+            Debug.Log("Perfect");
+        } else if(BugManager.instance.GetCurrentBugCount() == 2)
+        {
+           
+            Debug.Log("Amazing");
+        }
+        else if (BugManager.instance.GetCurrentBugCount() == 3)
+        {
+
+            
+            Debug.Log("Good");
+        }
+        else if (BugManager.instance.GetCurrentBugCount() == 4)
+        {
+          
+            Debug.Log("Great");
+        }
+    }
+    private IEnumerator GradualFill(Image image, float duration) // Not in use
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            image.fillAmount = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        image.fillAmount = 1f;
     }
 }

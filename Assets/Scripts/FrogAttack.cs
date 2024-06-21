@@ -58,7 +58,8 @@ public class FrogAttack : MonoBehaviour
                 waterAttackActive = false;
                 tongueAttackActive = true;
                 StartCoroutine(WaterBurstAttack(targetPosition));
-                StartCoroutine(WaterAttackCooldown());
+                UIManager.instance.WaterAttackOnCoolDown();
+                //   StartCoroutine(WaterAttackCooldown());
             }
         }
         else if (waterAttackActive && !canWaterAttack)
@@ -86,22 +87,7 @@ public class FrogAttack : MonoBehaviour
     }
 
     
-    private bool IsPointerOverLayerMaskObject() // Function to check if the pointer is over a predefined layermask object
-    {
-        PointerEventData eventData = new PointerEventData(EventSystem.current);
-        eventData.position = Input.mousePosition;
-        var results = new System.Collections.Generic.List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
-
-        foreach (var result in results)
-        {
-            if (((1 << result.gameObject.layer) & layerMask) != 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+ 
 
     void StartTongueAttack()
     {
@@ -227,18 +213,20 @@ public class FrogAttack : MonoBehaviour
         }
     }
 
-    private IEnumerator WaterAttackCooldown()
-    {
-        canWaterAttack = false;
-        UIManager.instance.WaterAttackOnCoolDown();
-        yield return new WaitForSeconds(waterAttackCooldown);
-        UIManager.instance.WaterAttackOffCoolDown();
-        canWaterAttack = true;
-    }
+
+    //private IEnumerator WaterAttackCooldown()
+    //{
+    //    canWaterAttack = false;
+    //    UIManager.instance.WaterAttackOnCoolDown();
+    //    yield return new WaitForSeconds(waterAttackCooldown);
+    //   // UIManager.instance.ReplenishWaterAttack();
+    //    canWaterAttack = true;
+    //}
 
     public void ActivateDeactivateWaterAttack()
     {
         Debug.Log("Activating water attack");
+        UIManager.instance.ReplenishWaterAttack(0);
         if(canWaterAttack)
         {
             waterAttackActive = !waterAttackActive;
@@ -249,5 +237,36 @@ public class FrogAttack : MonoBehaviour
         UIManager.instance.WaterAttackActive();
 
 
+    }
+
+    public void AttackState(bool attackState)
+    {
+        if(attackState)
+        {
+            UIManager.instance.waterAttackButton.interactable = true;
+            tongueAttackActive = true;
+            canWaterAttack = true;
+        }else
+        {
+            UIManager.instance.waterAttackButton.interactable = false;
+            tongueAttackActive = false;
+            canWaterAttack = false;
+        }
+    }
+    private bool IsPointerOverLayerMaskObject() // Function to check if the pointer is over a predefined layermask object
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        var results = new System.Collections.Generic.List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (var result in results)
+        {
+            if (((1 << result.gameObject.layer) & layerMask) != 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -118,6 +118,15 @@ public class BugManager : MonoBehaviour
 
     public void BugDestroyed(BugSO bug, GameObject bugPrefab)
     {
+        if(bugPrefab.CompareTag("EvilBug"))
+        {
+            UIManager.instance.ReplenishWaterAttack(0.25f);
+        }
+        else if(bugPrefab.CompareTag("Bug"))
+        {
+            UIManager.instance.ReplenishWaterAttack(0.55f);
+        }
+       
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed
         bugList.Remove(bug);
         currentBugCount--; // Decrease the bug count when a bug is destroyed
@@ -145,6 +154,7 @@ public class BugManager : MonoBehaviour
         {
             Destroy(evilBug);
         }
+
         bugList.Clear();
         currentBugCount = 0;
     
@@ -171,6 +181,7 @@ public class BugManager : MonoBehaviour
             Debug.Log("There are only wasps left in the scene.");
         }
     }
+    
 
 }
 
