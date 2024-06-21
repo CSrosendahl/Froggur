@@ -134,9 +134,16 @@ public class BugManager : MonoBehaviour
     {
         canSpawnBugs = false;
         GameObject[] bugs = GameObject.FindGameObjectsWithTag("Bug");
+        GameObject[] evilBugs = GameObject.FindGameObjectsWithTag("EvilBug");
+
         foreach (var bug in bugs)
         {
             Destroy(bug);
+        }
+
+        foreach (var evilBug in evilBugs)
+        {
+            Destroy(evilBug);
         }
         bugList.Clear();
         currentBugCount = 0;

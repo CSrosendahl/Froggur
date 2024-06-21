@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5091347027648841289}
   m_Layer: 0
   m_Name: EvilWasp
-  m_TagString: Bug
+  m_TagString: EvilBug
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

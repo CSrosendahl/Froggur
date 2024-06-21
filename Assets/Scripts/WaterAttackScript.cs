@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static BugSO;
 
 public class WaterAttackScript : MonoBehaviour
 {
@@ -13,10 +14,21 @@ public class WaterAttackScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bug"))
+        if (collision.gameObject.CompareTag("Bug") || collision.gameObject.CompareTag("EvilBug"))
         {
             GameObject bugGO = collision.gameObject;
+
+       //     Bugs bugScript = bugGO.GetComponent<Bugs>(); // Not being used rn
+
             GameObject waterDropGO = this.gameObject;
+
+            int evilBugPoint = 1;
+
+            if(bugGO.CompareTag("EvilBug"))
+            {
+                UIManager.instance.PointPrompt(evilBugPoint, collision.transform);
+                UIManager.instance.UpdateScore(evilBugPoint);
+            }
 
             ParticleSystem splash = Instantiate(splashParticle, transform.position, Quaternion.identity);
             splash.Play();

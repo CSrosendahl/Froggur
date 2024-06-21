@@ -253,6 +253,7 @@ public class UIManager : MonoBehaviour
     {
      //   waterAttackImage.color = Color.black;
         waterAttackImage.fillAmount = 0;
+        waterAttackImage.color = Color.white;
         StartCoroutine(GradualFill(waterAttackImage, frogAttackScript.waterAttackCooldown));
     }
 
@@ -277,7 +278,10 @@ public class UIManager : MonoBehaviour
     {
         if (frogAttackScript.waterAttackActive)
         {
-            // Make the water attack image blink
+            waterAttackImage.color = Color.grey;
+        } else
+        {
+            waterAttackImage.color = Color.white;
         }
     }
 }

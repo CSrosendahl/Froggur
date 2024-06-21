@@ -32,7 +32,7 @@ public class FrogAttack : MonoBehaviour
     [HideInInspector] public GameObject grabbedBug; // Reference to the grabbed bug
 
     // UI Layer Mask
-    public LayerMask uiLayerMask; // Assign this in the inspector to the desired UI layer
+    public LayerMask layerMask; // Assign this in the inspector to the desired UI layer
 
     void Start()
     {
@@ -48,7 +48,7 @@ public class FrogAttack : MonoBehaviour
     {
         if (waterAttackActive && canWaterAttack)
         {
-            if (Input.GetMouseButtonDown(0) && !isAttacking && !IsPointerOverUIObject()) // Detect mouse click for water attack
+            if (Input.GetMouseButtonDown(0) && !isAttacking && !IsPointerOverLayerMaskObject()) // Detect mouse click for water attack
             {
                 Debug.Log("Water attack");
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -68,7 +68,7 @@ public class FrogAttack : MonoBehaviour
 
         else if (tongueAttackActive)
         {
-            if (Input.GetMouseButtonDown(0) && !isAttacking && !IsPointerOverUIObject()) // Detect mouse click for tongue attack
+            if (Input.GetMouseButtonDown(0) && !isAttacking && !IsPointerOverLayerMaskObject()) // Detect mouse click for tongue attack
             {
                 Debug.Log("Tongue attack");
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -85,7 +85,8 @@ public class FrogAttack : MonoBehaviour
         }
     }
 
-    private bool IsPointerOverUIObject()
+    
+    private bool IsPointerOverLayerMaskObject() // Function to check if the pointer is over a predefined layermask object
     {
         PointerEventData eventData = new PointerEventData(EventSystem.current);
         eventData.position = Input.mousePosition;
@@ -94,7 +95,7 @@ public class FrogAttack : MonoBehaviour
 
         foreach (var result in results)
         {
-            if (((1 << result.gameObject.layer) & uiLayerMask) != 0)
+            if (((1 << result.gameObject.layer) & layerMask) != 0)
             {
                 return true;
             }
@@ -197,7 +198,7 @@ public class FrogAttack : MonoBehaviour
 
     private IEnumerator WaterBurstAttack(Vector3 targetPosition)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             WaterAttack(targetPosition);
             yield return new WaitForSeconds(waterBurstDelay);
@@ -245,6 +246,8 @@ public class FrogAttack : MonoBehaviour
         {
             Debug.Log("Water attack inactive");
         }
-       
+        UIManager.instance.WaterAttackActive();
+
+
     }
 }

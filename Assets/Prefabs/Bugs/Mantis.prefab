@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6165628424865374185}
   m_Layer: 0
   m_Name: Mantis
-  m_TagString: Bug
+  m_TagString: EvilBug
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

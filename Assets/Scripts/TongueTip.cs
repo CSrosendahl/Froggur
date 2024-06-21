@@ -7,7 +7,7 @@ public class TongueTip : MonoBehaviour
     public FrogAttack frogAttack; // Reference to the FrogAttack script
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bug"))
+        if (other.CompareTag("Bug") || other.CompareTag("EvilBug"))
         {
           
             Debug.Log("Caught bug yum yum!");

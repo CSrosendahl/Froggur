@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bug
   - TongueTip
+  - EvilBug
   layers:
   - Default
   - TransparentFX
