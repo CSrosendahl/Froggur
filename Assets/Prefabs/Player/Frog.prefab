@@ -311,13 +311,18 @@ MonoBehaviour:
   frogAnim: {fileID: 7006601975791808539}
   tongueSpeed: 35
   retractSpeed: 0.5
+  tongueAttackActive: 1
   waterAttackGO: {fileID: 7869623461835421046, guid: 27e40c8581fd1de47a0dabc40324d403, type: 3}
   waterAttackForce: 15
   waterBurstDelay: 0.1
   waterAttackCooldown: 5
+  waterAttackActive: 0
   canWaterAttack: 1
   isAttacking: 0
   grabbedBug: {fileID: 0}
+  uiLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!120 &591989789641400185
 LineRenderer:
   serializedVersion: 2

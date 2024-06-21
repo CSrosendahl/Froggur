@@ -1,15 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // create instance
     public static UIManager instance;
     private Coroutine floatingTextCoroutine; // Reference to the current coroutine
+
     private void Awake()
     {
         if (instance == null)
@@ -17,18 +15,17 @@ public class UIManager : MonoBehaviour
             instance = this;
         }
     }
-   
 
     [Header("Background")]
     public Image backgroundImage;
 
-    [Header ("Score")]
+    [Header("Score")]
     public int currentScore = 0;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bugsRemainingText;
     public TextMeshProUGUI combinedScore;
-   
-    [Header ("Timer")]
+
+    [Header("Timer")]
     public TextMeshProUGUI timerText;
     public float currentGameTime = 60;
     private bool gameTimerUp;
@@ -49,23 +46,18 @@ public class UIManager : MonoBehaviour
     [Header("Other")]
     public Image waterAttackImage;
 
-    [HideInInspector]public FrogAttack frogAttackScript;
+    [HideInInspector] public FrogAttack frogAttackScript;
 
     void Start()
     {
-     
         bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
         scoreText.text = "Score: " + currentScore;
-      
-        
-       
     }
+
     private void Update()
     {
         UpdateTimer();
         CountDownTimer();
-
-
     }
 
     #region Fader
@@ -112,14 +104,13 @@ public class UIManager : MonoBehaviour
         }
 
         fadeImage.color = new Color(color.r, color.g, color.b, 0);
-       
     }
     #endregion
 
     #region Timers
     private void UpdateTimer()
     {
-        if(gameTimerActive)
+        if (gameTimerActive)
         {
             if (currentGameTime > 0)
             {
@@ -140,9 +131,6 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-
-
-      
     }
 
     public void CountDownTimer()
@@ -158,7 +146,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 countDownToStartText.text = "GO!";
-                countDownToStart = 3.0f; 
+                countDownToStart = 3.0f;
                 countDownActive = false;
                 gameTimerActive = true;
                 currentGameTime = 30;
@@ -167,10 +155,8 @@ public class UIManager : MonoBehaviour
                 BugManager.instance.canSpawnBugs = true;
             }
         }
-
     }
     #endregion
-
 
     #region Popup text score
     public void PointPrompt(int point, Transform bugTransform)
@@ -223,14 +209,11 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-
-
     public void UpdateScore(int points)
     {
         currentScore += points;
         DisplayScore();
     }
-
 
     // Display current score
     public void DisplayScore()
@@ -238,16 +221,15 @@ public class UIManager : MonoBehaviour
         scoreText.text = "Score: " + currentScore;
         combinedScore.text = "Overall Score: " + LevelManager.instance.levelScoreData.GetOverallScore();
     }
-    #region IEnumrators/Resetscore
+
+    #region IEnumerators/ResetScore
     IEnumerator WaitToFadeIn()
     {
         yield return new WaitForSeconds(4);
-       
-
         LevelManager.instance.NextLevel();
         FadeIn(3f);
-        
     }
+
     IEnumerator WaitToRemoveCountDownText()
     {
         yield return new WaitForSeconds(1);
@@ -261,7 +243,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    // set level duration 
+    // Set level duration 
     public float SetLevelDuration(float duration)
     {
         return duration;
@@ -269,13 +251,33 @@ public class UIManager : MonoBehaviour
 
     public void WaterAttackOnCoolDown()
     {
-        waterAttackImage.color = Color.black;
+     //   waterAttackImage.color = Color.black;
+        waterAttackImage.fillAmount = 0;
+        StartCoroutine(GradualFill(waterAttackImage, frogAttackScript.waterAttackCooldown));
     }
+
     public void WaterAttackOffCoolDown()
     {
-        waterAttackImage.color = Color.white;
+      //  waterAttackImage.color = Color.white;
+    }
+
+    private IEnumerator GradualFill(Image image, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            image.fillAmount = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        image.fillAmount = 1f;
+    }
+
+    public void WaterAttackActive()
+    {
+        if (frogAttackScript.waterAttackActive)
+        {
+            // Make the water attack image blink
+        }
     }
 }
-
-
-
