@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour
         SaveCurrentLevelScore(); // Save score before changing level
         UIManager.instance.ResetScore();
         UIManager.instance.DisplayScore();
+        UIManager.instance.OnStageChangeScore(currentLevel,false);
         currentLevel++;
         LoadLevel(currentLevel);
     }

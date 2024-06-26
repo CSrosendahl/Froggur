@@ -65,7 +65,7 @@ public class BugManager : MonoBehaviour
         Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
 
         currentBugCount++;
-        UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
+     //   UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
 
       //  bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
 

@@ -23,6 +23,7 @@ public class FrogAttack : MonoBehaviour
     public float waterAttackForce = 10f; // Force applied to the water attack
     public float waterBurstDelay = 0.1f; // Delay between each water droplet in the burst
     public float waterAttackCooldown = 2f; // Cooldown duration for the water attack
+    public int waterBurstAttacks = 5;
     public bool waterAttackActive = false;
     public bool canWaterAttack = true;
 
@@ -184,7 +185,7 @@ public class FrogAttack : MonoBehaviour
 
     private IEnumerator WaterBurstAttack(Vector3 targetPosition)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < waterBurstAttacks; i++)
         {
             WaterAttack(targetPosition);
             yield return new WaitForSeconds(waterBurstDelay);

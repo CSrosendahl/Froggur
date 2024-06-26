@@ -24,6 +24,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bugsRemainingText;
     public TextMeshProUGUI combinedScore;
+    public TextMeshProUGUI onStageChangePointText;
+    public TextMeshProUGUI onStageChangeStageText;
+    public GameObject nextStageButton;
+    public GameObject onChangeLevelGUI;
+    public GameObject[] scoreStars;
+    public GameObject[] medals;
+    
 
     [Header("Timer")]
     public TextMeshProUGUI timerText;
@@ -54,7 +61,7 @@ public class UIManager : MonoBehaviour
     {
         currentGameTime = gameTime;
         frogAttackScript.AttackState(false);
-        bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
+      //  bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
         scoreText.text = "Score: " + currentScore;
     }
 
@@ -124,17 +131,86 @@ public class UIManager : MonoBehaviour
 
                 if (currentGameTime <= 0 && !gameTimerUp)
                 {
-                    countDownToStartText.enabled = true;
-                    countDownToStartText.text =  "Time is up! You scored: " + currentScore;
-                    
+                    //countDownToStartText.enabled = true;
+                   // countDownToStartText.text =  "Time is up! You scored: " + currentScore;
+                    OnStageChangeScore(LevelManager.instance.currentLevel, true);
+
                     gameTimerUp = true;
                     frogAttackScript.AttackState(false);
                     BugManager.instance.DestroyAllBugs();
-                    FadeOut(3);
-                    StartCoroutine(WaitToFadeIn());
+                   
                 }
             }
         }
+    }
+
+    public void FadeOutToNextStage()
+    {
+        FadeOut(3);
+        StartCoroutine(WaitToFadeIn());
+        nextStageButton.SetActive(false);
+    }
+    public void OnStageChangeScore(int currentStage, bool enabled)
+    {
+        if(enabled)
+        {
+            onChangeLevelGUI.SetActive(true);
+            nextStageButton.SetActive(true);
+
+            onStageChangeStageText.enabled = true;
+            onStageChangeStageText.text = "STAGE " + currentStage;
+
+            onStageChangePointText.enabled = true;
+            onStageChangePointText.text = currentScore.ToString() + " POINTS ";
+
+            if(currentScore >= 5)
+            {
+                medals[0].SetActive(true); // Bronze medal
+
+                // 1 Star
+                scoreStars[0].SetActive(true); 
+
+            }else if(currentScore > 10 && currentScore < 20) {
+                
+                medals[1].SetActive(true); // Silver Medal
+
+                // 2 Stars
+                scoreStars[0].SetActive(true); 
+                scoreStars[1].SetActive(true);
+
+            }else if(currentScore >= 25 )
+            {
+                medals[2].SetActive(true); // Gold medal
+
+                // 3 Stars
+                scoreStars[0].SetActive(true);
+                scoreStars[1].SetActive(true);
+                scoreStars[2].SetActive(true);
+               
+            }
+        
+        
+        } else
+        {
+            onStageChangeStageText.enabled = false;
+            onStageChangeStageText.text = "";
+
+            onStageChangePointText.enabled = false;
+            onStageChangePointText.text = "";
+
+            foreach (var star in scoreStars)
+            {
+                star.SetActive(false);
+            }
+            foreach (var medal in medals)
+            {
+                medal.SetActive(false);
+            }
+
+            onChangeLevelGUI.SetActive(false);
+            nextStageButton.SetActive(false);
+        }
+        
     }
 
     public void CountDownTimer()
