@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI onStageChangeStageText;
     public GameObject nextStageButton;
     public GameObject onChangeLevelGUI;
+    
     public GameObject[] scoreStars;
     public GameObject[] medals;
     
@@ -152,7 +153,7 @@ public class UIManager : MonoBehaviour
     }
     public void OnStageChangeScore(int currentStage, bool enabled)
     {
-        if(enabled)
+        if (enabled)
         {
             onChangeLevelGUI.SetActive(true);
             nextStageButton.SetActive(true);
@@ -163,22 +164,22 @@ public class UIManager : MonoBehaviour
             onStageChangePointText.enabled = true;
             onStageChangePointText.text = currentScore.ToString() + " POINTS ";
 
-            if(currentScore >= 5)
+            if (currentScore >= 10 && currentScore <= 19)
             {
                 medals[0].SetActive(true); // Bronze medal
 
                 // 1 Star
-                scoreStars[0].SetActive(true); 
-
-            }else if(currentScore > 10 && currentScore < 20) {
-                
-                medals[1].SetActive(true); // Silver Medal
+                scoreStars[0].SetActive(true);
+            }
+            else if (currentScore >= 20 && currentScore <= 30)
+            {
+                medals[1].SetActive(true); // Silver medal
 
                 // 2 Stars
-                scoreStars[0].SetActive(true); 
+                scoreStars[0].SetActive(true);
                 scoreStars[1].SetActive(true);
-
-            }else if(currentScore >= 25 )
+            }
+            else if (currentScore >= 31)
             {
                 medals[2].SetActive(true); // Gold medal
 
@@ -186,11 +187,9 @@ public class UIManager : MonoBehaviour
                 scoreStars[0].SetActive(true);
                 scoreStars[1].SetActive(true);
                 scoreStars[2].SetActive(true);
-               
             }
-        
-        
-        } else
+        }
+        else
         {
             onStageChangeStageText.enabled = false;
             onStageChangeStageText.text = "";
@@ -210,8 +209,8 @@ public class UIManager : MonoBehaviour
             onChangeLevelGUI.SetActive(false);
             nextStageButton.SetActive(false);
         }
-        
     }
+
 
     public void CountDownTimer()
     {
