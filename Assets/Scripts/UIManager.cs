@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI onStageChangeStageText;
     public GameObject nextStageButton;
     public GameObject onChangeLevelGUI;
+    public Animator onStageGUIAnimator;
     
     public GameObject[] scoreStars;
     public GameObject[] medals;
@@ -156,37 +157,42 @@ public class UIManager : MonoBehaviour
         if (enabled)
         {
             onChangeLevelGUI.SetActive(true);
+            
             nextStageButton.SetActive(true);
 
+            onStageGUIAnimator.Play("FadeInAnim");
             onStageChangeStageText.enabled = true;
             onStageChangeStageText.text = "STAGE " + currentStage;
 
             onStageChangePointText.enabled = true;
             onStageChangePointText.text = currentScore.ToString() + " POINTS ";
 
-            if (currentScore >= 10 && currentScore <= 19)
+            if (currentScore >= 5 && currentScore <= 10)
             {
-                medals[0].SetActive(true); // Bronze medal
+                //medals[0].SetActive(true); // Bronze medal
 
-                // 1 Star
-                scoreStars[0].SetActive(true);
+                //// 1 Star
+                //scoreStars[0].SetActive(true);
+                onStageGUIAnimator.SetTrigger("1Star");
             }
-            else if (currentScore >= 20 && currentScore <= 30)
+            else if (currentScore >= 10 && currentScore <= 15)
             {
-                medals[1].SetActive(true); // Silver medal
+                //medals[1].SetActive(true); // Silver medal
 
-                // 2 Stars
-                scoreStars[0].SetActive(true);
-                scoreStars[1].SetActive(true);
+                //// 2 Stars
+                //scoreStars[0].SetActive(true);
+                //scoreStars[1].SetActive(true);
+                onStageGUIAnimator.SetTrigger("2Star");
             }
-            else if (currentScore >= 31)
+            else if (currentScore >= 20)
             {
-                medals[2].SetActive(true); // Gold medal
+                //medals[2].SetActive(true); // Gold medal
 
-                // 3 Stars
-                scoreStars[0].SetActive(true);
-                scoreStars[1].SetActive(true);
-                scoreStars[2].SetActive(true);
+                //// 3 Stars
+                //scoreStars[0].SetActive(true);
+                //scoreStars[1].SetActive(true);
+                //scoreStars[2].SetActive(true);
+                onStageGUIAnimator.SetTrigger("3Star");
             }
         }
         else
@@ -197,14 +203,14 @@ public class UIManager : MonoBehaviour
             onStageChangePointText.enabled = false;
             onStageChangePointText.text = "";
 
-            foreach (var star in scoreStars)
-            {
-                star.SetActive(false);
-            }
-            foreach (var medal in medals)
-            {
-                medal.SetActive(false);
-            }
+            //foreach (var star in scoreStars)
+            //{
+            //    star.SetActive(false);
+            //}
+            //foreach (var medal in medals)
+            //{
+            //    medal.SetActive(false);
+            //}
 
             onChangeLevelGUI.SetActive(false);
             nextStageButton.SetActive(false);
