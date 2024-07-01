@@ -49,6 +49,19 @@ public class LevelScoreData : ScriptableObject
         CalculateOverallScore();
     }
 
+    public void ResetScoreForLevel(int level)
+    {
+        if (level >= 0 && level < levelScores.Length)
+        {
+            levelScores[level] = 0;
+            CalculateOverallScore();
+        }
+        else
+        {
+            Debug.LogError("Level index out of range.");
+        }
+    }
+
     // Get overall score
     public int GetOverallScore()
     {

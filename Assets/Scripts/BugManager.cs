@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class BugManager : MonoBehaviour
@@ -15,9 +14,7 @@ public class BugManager : MonoBehaviour
         }
     }
 
-
     public GameObject[] bugPrefabs; // Array of different bug prefabs
-
     public float spawnIntervalFoodBug = 2f; // Time interval between spawns
     public float spawnIntervalEvilBug = 5f;
     public int maxBugs = 10; // Maximum number of bugs that can be spawned at once
@@ -30,6 +27,7 @@ public class BugManager : MonoBehaviour
     public List<BugSO> bugList = new List<BugSO>();
 
     public bool canSpawnBugs = false;
+    private List<int> remainingBugIndices; // List to track remaining bugs to be spawned in the current cycle
 
     void Start()
     {
@@ -38,17 +36,24 @@ public class BugManager : MonoBehaviour
         float screenBottom = mainCamera.transform.position.y - mainCamera.orthographicSize;
         minY = screenBottom + (screenHeight * 0.4f); // Calculate 40% from the bottom of the screen
 
+        InitializeBugIndices();
         InvokeRepeating("SpawnBug", 0f, spawnIntervalFoodBug); // Start spawning bugs at regular intervals
         InvokeRepeating("SpawnEvilBug", 0f, spawnIntervalEvilBug);
     }
 
-    private void Update()
+    void InitializeBugIndices()
     {
-        CheckBugTypeInScene(); 
+        // Initialize the list with all bug indices
+        remainingBugIndices = new List<int>();
+        for (int i = 0; i < bugPrefabs.Length - 2; i++) // Exclude the evil bug
+        {
+            remainingBugIndices.Add(i);
+        }
     }
+
     void SpawnBug()
     {
-        if(!canSpawnBugs)
+        if (!canSpawnBugs)
         {
             Debug.Log("Bug spawner inactive");
             return;
@@ -56,19 +61,25 @@ public class BugManager : MonoBehaviour
 
         if (currentBugCount >= maxBugs) return; // Do not spawn if the maximum number of bugs is reached
 
+        if (remainingBugIndices.Count == 0)
+        {
+            InitializeBugIndices(); // Reset the list if all bugs have been spawned
+        }
+
+        int randomIndex = Random.Range(0, remainingBugIndices.Count); // Select a random index from the remaining bugs
+        int bugIndex = remainingBugIndices[randomIndex];
+        remainingBugIndices.RemoveAt(randomIndex); // Remove the selected bug index from the list
+
         float xPosition = Random.Range(-spawnAreaWidth / 2f, spawnAreaWidth / 2f);
         float yPosition = Random.Range(minY, minY + spawnAreaHeight);
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
 
-        int bugIndex = Random.Range(0, bugPrefabs.Length-2); // Select a random bug type, excluding the evil bug, which is always at the last index of the list
         Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
 
         currentBugCount++;
-     //   UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
-
-      //  bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
-
+        // UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();
+        // bugList.Add(bugPrefabs[bugIndex].GetComponent<Bugs>().bugSO);
     }
 
     void SpawnEvilBug()
@@ -96,11 +107,8 @@ public class BugManager : MonoBehaviour
 
         // Instantiate the selected bug prefab at the spawn position
         Instantiate(bugPrefabs[evilBugIndex], spawnPosition, Quaternion.identity);
-
-
-
-
     }
+
     public void UpdateSpawnIntervals(float newFoodBugInterval, float newEvilBugInterval)
     {
         // Cancel the existing invocations
@@ -118,20 +126,19 @@ public class BugManager : MonoBehaviour
 
     public void BugDestroyed(BugSO bug, GameObject bugPrefab)
     {
-        if(bugPrefab.CompareTag("EvilBug"))
+        if (bugPrefab.CompareTag("EvilBug"))
         {
             UIManager.instance.ReplenishWaterAttack(0.25f);
         }
-        else if(bugPrefab.CompareTag("Bug"))
+        else if (bugPrefab.CompareTag("Bug"))
         {
             UIManager.instance.ReplenishWaterAttack(0.55f);
         }
-       
+
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed
         bugList.Remove(bug);
         currentBugCount--; // Decrease the bug count when a bug is destroyed
         Destroy(bugPrefab);
-      
     }
 
     // create a get method for currentBugCount
@@ -139,6 +146,7 @@ public class BugManager : MonoBehaviour
     {
         return currentBugCount;
     }
+
     public void DestroyAllBugs()
     {
         canSpawnBugs = false;
@@ -157,10 +165,7 @@ public class BugManager : MonoBehaviour
 
         bugList.Clear();
         currentBugCount = 0;
-    
-
     }
-
 
     public void CheckBugTypeInScene()
     {
@@ -181,8 +186,4 @@ public class BugManager : MonoBehaviour
             Debug.Log("There are only wasps left in the scene.");
         }
     }
-    
-
 }
-
-  

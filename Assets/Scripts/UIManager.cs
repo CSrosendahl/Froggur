@@ -21,41 +21,53 @@ public class UIManager : MonoBehaviour
 
     [Header("Score")]
     public int currentScore = 0;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI bugsRemainingText;
-    public TextMeshProUGUI combinedScore;
-    public TextMeshProUGUI onStageChangePointText;
-    public TextMeshProUGUI onStageChangeStageText;
-    public GameObject nextStageButton;
-    public GameObject onChangeLevelGUI;
-    public Animator onStageGUIAnimator;
+    public int oneStarPointThreshold = 5;
+    public int twoStarPointThreshold = 10;
+    public int threeStarPointThreshold = 20;
+
+    [HideInInspector] public TextMeshProUGUI scoreText;
+    [HideInInspector] public TextMeshProUGUI bugsRemainingText;
+    [HideInInspector] public TextMeshProUGUI combinedScore;
+    [HideInInspector] public TextMeshProUGUI onStageChangePointText;
+    [HideInInspector] public TextMeshProUGUI onStageChangeStageText;
+    [HideInInspector] public GameObject nextStageButton;
+    [HideInInspector] public GameObject restartLevelButton;
+    [HideInInspector] public GameObject onChangeLevelGUI;
+    [HideInInspector] public Animator onStageGUIAnimator;
     
-  
+
+
 
     [Header("Timer")]
-    public TextMeshProUGUI timerText;
+   
+
+    public float gameTime = 60;  
+    public float countDownToStart = 3.0f;
+    [HideInInspector] public TextMeshProUGUI timerText;
+    [HideInInspector] public TextMeshProUGUI countDownToStartText;
+
+    private bool countDownActive = true;
     private float currentGameTime = 0;
-    public float gameTime = 60;
     private bool gameTimerUp;
     private bool gameTimerActive = false;
-    public TextMeshProUGUI countDownToStartText;
-    public float countDownToStart = 3.0f;
-    private bool countDownActive = true;
 
+   
     [Header("Point Prompt")]
-    public TextMeshProUGUI pointPrompt;
+    [HideInInspector] public TextMeshProUGUI pointPrompt;
+    
     private Transform grabbedBugTransform; // Transform of the grabbed bug
     private int bugPoints; // Current points for the grabbed bug
     private Vector3 initialPosition;
 
     [Header("Fade")]
-    public Image fadeImage;
+    [HideInInspector] public Image fadeImage;
 
     [Header("Other")]
-    public Image waterAttackImage;
-    public Button waterAttackButton;
+    [HideInInspector] public Image waterAttackImage;
+    [HideInInspector] public Button waterAttackButton;
 
     [HideInInspector] public FrogAttack frogAttackScript;
+   
 
     void Start()
     {
@@ -138,7 +150,8 @@ public class UIManager : MonoBehaviour
                     gameTimerUp = true;
                     frogAttackScript.AttackState(false);
                     BugManager.instance.DestroyAllBugs();
-                   
+                    BirdManager.instance.DestroyAllBirds();
+
                 }
             }
         }
@@ -147,8 +160,16 @@ public class UIManager : MonoBehaviour
     public void FadeOutToNextStage()
     {
         FadeOut(3);
-        StartCoroutine(WaitToFadeIn());
+        StartCoroutine(WaitToFadeInNextLevel());
         nextStageButton.SetActive(false);
+        restartLevelButton.SetActive(false);
+    }
+    public void FadeOutRestartStage()
+    {
+        FadeOut(3);
+        StartCoroutine(WaitToFadeInRestartLevel());
+        nextStageButton.SetActive(false);
+        restartLevelButton.SetActive(false);
     }
     public void OnStageChangeScore(int currentStage, bool enabled)
     {
@@ -157,6 +178,7 @@ public class UIManager : MonoBehaviour
             onChangeLevelGUI.SetActive(true);
             
             nextStageButton.SetActive(true);
+            restartLevelButton.SetActive(true);
 
             onStageGUIAnimator.Play("FadeInAnim");
             onStageChangeStageText.enabled = true;
@@ -165,20 +187,19 @@ public class UIManager : MonoBehaviour
             onStageChangePointText.enabled = true;
             onStageChangePointText.text = currentScore.ToString() + " POINTS ";
 
-            if (currentScore >= 5 && currentScore <= 10)
+            if (currentScore >= threeStarPointThreshold)
             {
-              
-                onStageGUIAnimator.SetTrigger("1Star");
-            }
-            else if (currentScore >= 10 && currentScore <= 15)
-            {
-              
-                onStageGUIAnimator.SetTrigger("2Star");
-            }
-            else if (currentScore >= 20)
-            {
-             
                 onStageGUIAnimator.SetTrigger("3Star");
+                TurtleFriend.instance.PlayAnimation("HappyJump2");
+            }
+            else if (currentScore >= twoStarPointThreshold)
+            {
+                onStageGUIAnimator.SetTrigger("2Star");
+                TurtleFriend.instance.PlayAnimation("HappyJump");
+            }
+            else if (currentScore >= oneStarPointThreshold)
+            {
+                onStageGUIAnimator.SetTrigger("1Star");
             }
         }
         else
@@ -192,6 +213,7 @@ public class UIManager : MonoBehaviour
 
             onChangeLevelGUI.SetActive(false);
             nextStageButton.SetActive(false);
+            restartLevelButton.SetActive(false);
         }
     }
 
@@ -283,11 +305,17 @@ public class UIManager : MonoBehaviour
     public void DisplayScore()
     {
         scoreText.text = "Score: " + currentScore;
-        combinedScore.text = "Overall Score: " + LevelManager.instance.levelScoreData.GetOverallScore();
+      //  combinedScore.text = "Overall Score: " + LevelManager.instance.levelScoreData.GetOverallScore();
     }
 
     #region IEnumerators/ResetScore
-    IEnumerator WaitToFadeIn()
+    IEnumerator WaitToFadeInRestartLevel()
+    {
+        yield return new WaitForSeconds(4);
+        LevelManager.instance.RestartLevel();
+        FadeIn(3f);
+    }
+    IEnumerator WaitToFadeInNextLevel()
     {
         yield return new WaitForSeconds(4);
         LevelManager.instance.NextLevel();
@@ -305,6 +333,7 @@ public class UIManager : MonoBehaviour
         currentScore = 0;
         scoreText.text = "Score: " + currentScore;
     }
+  
     #endregion
 
     // Set level duration 
@@ -352,34 +381,11 @@ public class UIManager : MonoBehaviour
         waterAttackImage.fillAmount = 1;
         waterAttackImage.color = Color.white;
         frogAttackScript.canWaterAttack = true;
+        frogAttackScript.waterAttackActive = false;
     
     }
 
-    public void PromptOnLevelChange() // Not in use
-    {
-        
-        
-        if(BugManager.instance.GetCurrentBugCount() == 0)
-        {
-          
-            Debug.Log("Perfect");
-        } else if(BugManager.instance.GetCurrentBugCount() == 2)
-        {
-           
-            Debug.Log("Amazing");
-        }
-        else if (BugManager.instance.GetCurrentBugCount() == 3)
-        {
-
-            
-            Debug.Log("Good");
-        }
-        else if (BugManager.instance.GetCurrentBugCount() == 4)
-        {
-          
-            Debug.Log("Great");
-        }
-    }
+ 
     private IEnumerator GradualFill(Image image, float duration) // Not in use
     {
         float elapsed = 0f;

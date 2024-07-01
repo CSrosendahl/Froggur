@@ -16,6 +16,7 @@ public class FrogAttack : MonoBehaviour
     public float tongueSpeed = 5f; // Speed at which the tongue extends
     public float retractSpeed = 0.5f; // Speed at which the tongue retracts
     public bool tongueAttackActive = true;
+    public bool canTongueAttack = true;
 
     // Water Attack Settings
     [Header("Water Attack Settings")]
@@ -60,7 +61,7 @@ public class FrogAttack : MonoBehaviour
                 tongueAttackActive = true;
                 StartCoroutine(WaterBurstAttack(targetPosition));
                 UIManager.instance.WaterAttackOnCoolDown();
-                //   StartCoroutine(WaterAttackCooldown());
+               
             }
         }
         else if (waterAttackActive && !canWaterAttack)
@@ -68,7 +69,7 @@ public class FrogAttack : MonoBehaviour
             Debug.Log("Water attack on cooldown");
         }
 
-        else if (tongueAttackActive)
+        else if (tongueAttackActive && canTongueAttack)
         {
             if (Input.GetMouseButtonDown(0) && !isAttacking && !IsPointerOverLayerMaskObject()) // Detect mouse click for tongue attack
             {
@@ -78,6 +79,7 @@ public class FrogAttack : MonoBehaviour
                 targetPosition = mousePos; // Set the target position to the clicked position
                 frogAnim.SetTrigger("TongueAttack");
                 StartTongueAttack();
+              
             }
         }
 
@@ -100,6 +102,7 @@ public class FrogAttack : MonoBehaviour
         tongueTip.transform.position = attackPoint.position; // Initialize the position of the tongue tip
 
         isAttacking = true;
+        canTongueAttack = false;
         tongueCollider.enabled = true; // Enable the collider when attacking
     }
 
@@ -164,6 +167,7 @@ public class FrogAttack : MonoBehaviour
 
             // Update the start position dynamically
             tongueLineRenderer.SetPosition(0, attackPoint.position);
+          
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -172,6 +176,7 @@ public class FrogAttack : MonoBehaviour
         tongueLineRenderer.SetPosition(1, attackPoint.position);
         tongueLineRenderer.enabled = false; // Hide the tongue
         tongueTip.SetActive(false); // Hide the tongue tip
+        canTongueAttack = true;
 
         if (grabbedBug != null)
         {
@@ -181,6 +186,9 @@ public class FrogAttack : MonoBehaviour
             BugManager.instance.BugDestroyed(grabbedBug.GetComponent<Bugs>().bugSO, grabbedBug);
             grabbedBug = null;
         }
+       
+
+
     }
 
     private IEnumerator WaterBurstAttack(Vector3 targetPosition)
