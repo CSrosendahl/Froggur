@@ -15,7 +15,7 @@ public class Bird : MonoBehaviour
     public float boundaryY = 5f; // Vertical boundary for bird movement
 
     [Header("Other options")]
-    public float spawnDelay = 5f;
+  //  public float spawnDelay = 5f;
     public GameObject birdGO; // Reference to the bird GameObject
     public ParticleSystem birdDeathEffect;
     public int birdHealth = 1;

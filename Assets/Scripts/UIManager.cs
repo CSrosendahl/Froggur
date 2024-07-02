@@ -348,7 +348,7 @@ public class UIManager : MonoBehaviour
         waterAttackImage.fillAmount = 0;
         waterAttackImage.color = Color.white;
         frogAttackScript.canWaterAttack = false;
-       // StartCoroutine(GradualFill(waterAttackImage, frogAttackScript.waterAttackCooldown));
+        StartCoroutine(GradualFill(waterAttackImage, frogAttackScript.waterAttackCooldown));
     }
 
     public void ReplenishWaterAttack(float replenishAmount)
@@ -396,5 +396,10 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         image.fillAmount = 1f;
+        if(image.fillAmount == 1f)
+        {
+            frogAttackScript.canWaterAttack = true;
+        }
+       
     }
 }

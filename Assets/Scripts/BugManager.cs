@@ -128,11 +128,11 @@ public class BugManager : MonoBehaviour
     {
         if (bugPrefab.CompareTag("EvilBug"))
         {
-            UIManager.instance.ReplenishWaterAttack(0.25f);
+         //   UIManager.instance.ReplenishWaterAttack(0.25f);
         }
         else if (bugPrefab.CompareTag("Bug"))
         {
-            UIManager.instance.ReplenishWaterAttack(0.55f);
+           // UIManager.instance.ReplenishWaterAttack(0.55f);
         }
 
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed
