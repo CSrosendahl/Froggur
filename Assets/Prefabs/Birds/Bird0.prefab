@@ -5040,5 +5040,5 @@ MonoBehaviour:
   boundaryY: 5
   birdGO: {fileID: 9036496373652272475}
   birdDeathEffect: {fileID: 2464400848289297532}
-  birdHealth: 3
+  birdHealth: 1
   birdPoints: 3

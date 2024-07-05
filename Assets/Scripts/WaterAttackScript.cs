@@ -25,6 +25,7 @@ public class WaterAttackScript : MonoBehaviour
 
             if(bugGO.CompareTag("EvilBug"))
             {
+
                 UIManager.instance.PointPrompt(evilBugPoint, collision.transform);
                 UIManager.instance.UpdateScore(evilBugPoint);
             }
@@ -48,25 +49,30 @@ public class WaterAttackScript : MonoBehaviour
 
             birdScript.TakeDamage(1);
 
+            ParticleSystem splash = Instantiate(splashParticle, transform.position, Quaternion.identity);
+            splash.Play();
+
+            Destroy(splash.gameObject, splash.main.duration);
+            Destroy(waterDropGO);
+
+
             if (birdScript.birdHealth <= 0)
             {
-                ParticleSystem birdDeath = Instantiate(birdScript.birdDeathEffect, transform.position, Quaternion.identity);
-                birdDeath.Play();
-                Destroy(birdDeath.gameObject, birdDeath.main.duration);
+                ParticleSystem birdDeathEffect = Instantiate(birdScript.birdDeathEffect, transform.position, Quaternion.identity);
+                birdDeathEffect.Play();
+              
+
                 UIManager.instance.PointPrompt(birdPoint, collision.transform);
                 UIManager.instance.UpdateScore(birdPoint);
 
 
                 TurtleFriend.instance.PlayAnimation("HappyJump2");
+                Destroy(birdDeathEffect.gameObject, 1);
                 Destroy(birdGO);
-                
+  
             }
 
-
-            ParticleSystem splash = Instantiate(splashParticle, transform.position, Quaternion.identity);
-            splash.Play();
-            Destroy(splash.gameObject, splash.main.duration);
-            Destroy(waterDropGO);
+           
         }
         
    

@@ -17,9 +17,21 @@ public class TurtleFriend : MonoBehaviour
     public float moveSpeed = 2f;
     public float eatDuration = 10f; // Duration the turtle will attempt to eat bugs
     public float catchDistance = 1f; // Distance at which the turtle catches the bug
+    public float cooldownDuration = 5f; // Duration of the cooldown
+    public float alphaChangeDuration = 1f; // Duration over which alpha changes
+    private float cooldownTimer = 0f;
+    private bool isOnCooldown = false;
 
     private Transform targetBug;
     private bool isEatingBugs = false;
+    private Material turtleMaterial;
+    private Color originalColor;
+
+    private void Start()
+    {
+        turtleMaterial = GetComponent<Renderer>().material;
+        originalColor = turtleMaterial.color;
+    }
 
     public void PlayAnimation(string animationName)
     {
@@ -35,8 +47,12 @@ public class TurtleFriend : MonoBehaviour
 
     private void OnMouseDown()
     {
-        PlayAnimation("HappyJump"); // Replace "HappyJump" with the name of your animation
-       // StartEatingBugs();
+        if (!isOnCooldown && BugsAvailable())
+        {
+         //   PlayAnimation("HappyJump");
+            StartEatingBugs();
+        }
+        PlayAnimation("HappyJump");
     }
 
     private void Update()
@@ -56,13 +72,31 @@ public class TurtleFriend : MonoBehaviour
                 // Check if the ray hits this object's collider
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.transform == transform)
+                    if (hit.transform == transform && !isOnCooldown && BugsAvailable())
                     {
-                        PlayAnimation("HappyJump"); // Replace "HappyJump" with the name of your animation
+                    
+                        StartEatingBugs();
                     }
                 }
+                PlayAnimation("HappyJump");
             }
         }
+
+        if (isOnCooldown)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0)
+            {
+                isOnCooldown = false;
+                StartCoroutine(ChangeAlpha(0f, 1f, alphaChangeDuration)); // Fade in
+            }
+        }
+    }
+
+    private bool BugsAvailable()
+    {
+        GameObject[] bugs = GameObject.FindGameObjectsWithTag("EvilBug");
+        return bugs.Length > 0;
     }
 
     public void StartEatingBugs()
@@ -101,8 +135,9 @@ public class TurtleFriend : MonoBehaviour
                 {
                     Bugs bugScript = targetBug.GetComponent<Bugs>();
                     // Handle bug catching logic here
-                    UIManager.instance.PointPrompt(bugScript.points, targetBug);
-                    UIManager.instance.UpdateScore(bugScript.points);
+                    int eatBugPoint = 1;
+                    UIManager.instance.PointPrompt(eatBugPoint, targetBug);
+                    UIManager.instance.UpdateScore(eatBugPoint);
                     Destroy(targetBug.gameObject);
                     targetBug = null;
                 }
@@ -113,6 +148,11 @@ public class TurtleFriend : MonoBehaviour
 
         isEatingBugs = false;
         turtleAnim.enabled = true;
+
+        // Start cooldown
+        isOnCooldown = true;
+        cooldownTimer = cooldownDuration;
+        StartCoroutine(ChangeAlpha(1f, 0f, alphaChangeDuration)); // Fade out
     }
 
     private void MoveTowardsBug(Transform bug)
@@ -138,5 +178,23 @@ public class TurtleFriend : MonoBehaviour
         }
 
         return closestBug != null ? closestBug.transform : null;
+    }
+
+    private IEnumerator ChangeAlpha(float startAlpha, float endAlpha, float duration)
+    {
+        float elapsedTime = 0f;
+        Color color = turtleMaterial.color;
+
+        while (elapsedTime < duration)
+        {
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            color.a = alpha;
+            turtleMaterial.color = color;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        color.a = endAlpha;
+        turtleMaterial.color = color;
     }
 }
