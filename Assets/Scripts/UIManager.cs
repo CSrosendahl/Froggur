@@ -67,7 +67,14 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public Button waterAttackButton;
 
     [HideInInspector] public FrogAttack frogAttackScript;
-   
+
+    [Header("Audio Settings")]
+    public AudioClip countDownAudio;
+    public AudioClip goAudio;
+    public AudioClip gameOverAudio;
+    public AudioClip gameWinAudio;
+ 
+
 
     void Start()
     {
@@ -227,21 +234,46 @@ public class UIManager : MonoBehaviour
             {
                 countDownToStart -= Time.deltaTime;
                 countDownToStartText.text = Mathf.Ceil(countDownToStart).ToString();
+
+                // Play the countdown sound once every second
+
+                if(countDownToStart != 0)
+                {
+                    if (Mathf.Floor(countDownToStart) != Mathf.Floor(countDownToStart + Time.deltaTime))
+                    {
+                        PlayCountdownSound();
+
+                    }
+                }
+              
+
+
             }
             else
             {
+                
                 countDownToStartText.text = "GO!";
                 countDownToStart = 3.0f;
                 countDownActive = false;
                 gameTimerActive = true;
-               
+
                 currentGameTime = gameTime;
                 frogAttackScript.AttackState(true);
                 StartCoroutine(WaitToRemoveCountDownText());
                 BugManager.instance.canSpawnBugs = true;
+                AudioManager.instance.PlaySound(goAudio);
             }
         }
     }
+
+    private void PlayCountdownSound()
+    {
+        if (AudioManager.instance.audioSource != null && countDownAudio != null)
+        {
+            AudioManager.instance.audioSource.PlayOneShot(countDownAudio);
+        }
+    }
+
     #endregion
 
     #region Popup text score

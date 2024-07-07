@@ -5016,6 +5016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splashParticle: {fileID: 3587831137596894458}
+  waterHitSound: {fileID: 8300000, guid: b6ca20695ef0df9499bca4de948a8546, type: 3}
 --- !u!58 &4361153111261013852
 CircleCollider2D:
   m_ObjectHideFlags: 0

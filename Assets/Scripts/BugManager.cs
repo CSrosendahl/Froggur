@@ -29,6 +29,8 @@ public class BugManager : MonoBehaviour
     public bool canSpawnBugs = false;
     private List<int> remainingBugIndices; // List to track remaining bugs to be spawned in the current cycle
 
+    public FrogAttack frogScript;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -128,11 +130,14 @@ public class BugManager : MonoBehaviour
     {
         if (bugPrefab.CompareTag("EvilBug"))
         {
-         //   UIManager.instance.ReplenishWaterAttack(0.25f);
+            //   UIManager.instance.ReplenishWaterAttack(0.25f);
+            AudioManager.instance.PlaySound(frogScript.evilBugEatSound);
+
         }
         else if (bugPrefab.CompareTag("Bug"))
         {
-           // UIManager.instance.ReplenishWaterAttack(0.55f);
+            // UIManager.instance.ReplenishWaterAttack(0.55f);
+           
         }
 
         Debug.Log("Ate bug: " + bug.bugName); // Log the bug that was destroyed

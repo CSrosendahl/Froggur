@@ -320,6 +320,9 @@ MonoBehaviour:
   waterBurstAttacks: 1
   waterAttackActive: 0
   canWaterAttack: 1
+  tongueAttackSound: {fileID: 8300000, guid: e23331b8e74b8694781a430053e62e7f, type: 3}
+  bugGrabSound: {fileID: 8300000, guid: 0081ed59fe43abd47b202a2cd380b120, type: 3}
+  bugEatSound: {fileID: 8300000, guid: a0bbd106e8aebdc4e83686f84df2db01, type: 3}
   isAttacking: 0
   grabbedBug: {fileID: 0}
   layerMask:

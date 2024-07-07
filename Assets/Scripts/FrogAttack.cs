@@ -28,6 +28,13 @@ public class FrogAttack : MonoBehaviour
     public bool waterAttackActive = false;
     public bool canWaterAttack = true;
 
+    [Header("Audio Settings")]
+    public AudioClip tongueAttackSound; // Sound for the tongue attack
+    public AudioClip bugGrabSound; // Sound for grabbing a bug
+    public AudioClip bugEatSound; // Sound for eating a bug
+    public AudioClip evilBugEatSound; //  Sound for eating an evil bug
+    public AudioClip waterShootSound; // Sound for the water attack
+
     // Internal Variables
     private Vector3 targetPosition; // Position where the tongue or water extends to
     [HideInInspector] public bool isAttacking = false; // Flag to check if the frog is attacking
@@ -104,6 +111,7 @@ public class FrogAttack : MonoBehaviour
         isAttacking = true;
         canTongueAttack = false;
         tongueCollider.enabled = true; // Enable the collider when attacking
+        AudioManager.instance.PlaySound(tongueAttackSound);
     }
 
     void ExtendTongue()
@@ -162,7 +170,10 @@ public class FrogAttack : MonoBehaviour
 
             if (grabbedBug != null)
             {
+               
+
                 grabbedBug.transform.position = retractPosition; // Move the bug along with the tongue tip
+                AudioManager.instance.PlaySound(bugGrabSound);
             }
 
             // Update the start position dynamically
@@ -184,6 +195,8 @@ public class FrogAttack : MonoBehaviour
 
             UIManager.instance.UpdateScore(bugScript.points);
             BugManager.instance.BugDestroyed(grabbedBug.GetComponent<Bugs>().bugSO, grabbedBug);
+
+         //   AudioManager.instance.PlaySound(bugEatSound); // Too much sound
             grabbedBug = null;
         }
        
@@ -204,7 +217,7 @@ public class FrogAttack : MonoBehaviour
     {
         // Instantiate the water attack GameObject at the attack point
         GameObject waterAttack = Instantiate(waterAttackGO, attackPoint.position, Quaternion.identity);
-
+        AudioManager.instance.PlaySound(waterShootSound); // Play the water attack sound
         // Calculate the direction to the target position
         Vector3 direction = (targetPosition - attackPoint.position).normalized;
 
@@ -220,6 +233,7 @@ public class FrogAttack : MonoBehaviour
         {
             rb.AddForce(direction * waterAttackForce, ForceMode2D.Impulse);
         }
+      
     }
 
 

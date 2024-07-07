@@ -6,7 +6,9 @@ using UnityEngine;
 public class WaterAttackScript : MonoBehaviour
 {
     public ParticleSystem splashParticle; // Assign your WaterSplashParticle here
-   
+    public AudioClip waterHitSound; // Sound for the water attack
+    
+
 
     private void Start()
     {
@@ -71,11 +73,12 @@ public class WaterAttackScript : MonoBehaviour
                 Destroy(birdGO);
   
             }
+          
 
            
         }
-        
-   
+        AudioManager.instance.PlaySound(waterHitSound);
+
     }
     IEnumerator WaitToPlayAnim(float waitTime)
     {
