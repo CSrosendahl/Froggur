@@ -27,6 +27,13 @@ public class TurtleFriend : MonoBehaviour
     private Material turtleMaterial;
     private Color originalColor;
 
+    [Header("Audio")]
+    public AudioClip eatSound;
+    public AudioClip cooldownSound;
+    public AudioClip hitBirdSound;
+    public AudioClip interactSound;
+
+
     private void Start()
     {
         turtleMaterial = GetComponent<Renderer>().material;
@@ -53,6 +60,7 @@ public class TurtleFriend : MonoBehaviour
             StartEatingBugs();
         }
         PlayAnimation("HappyJump");
+        AudioManager.instance.PlaySoundNoSkip(interactSound);
     }
 
     private void Update()
@@ -77,8 +85,10 @@ public class TurtleFriend : MonoBehaviour
                     
                         StartEatingBugs();
                     }
+                    PlayAnimation("HappyJump");
+                    AudioManager.instance.PlaySoundNoSkip(interactSound);
                 }
-                PlayAnimation("HappyJump");
+               
             }
         }
 
@@ -89,6 +99,7 @@ public class TurtleFriend : MonoBehaviour
             {
                 isOnCooldown = false;
                 StartCoroutine(ChangeAlpha(0f, 1f, alphaChangeDuration)); // Fade in
+                AudioManager.instance.PlaySound(cooldownSound);
             }
         }
     }
@@ -134,6 +145,7 @@ public class TurtleFriend : MonoBehaviour
                 if (targetBug != null && Vector2.Distance(transform.position, targetBug.position) <= catchDistance)
                 {
                     Bugs bugScript = targetBug.GetComponent<Bugs>();
+                    AudioManager.instance.PlaySound(eatSound);
                     // Handle bug catching logic here
                     int eatBugPoint = 1;
                     UIManager.instance.PointPrompt(eatBugPoint, targetBug);

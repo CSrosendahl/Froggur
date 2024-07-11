@@ -170,10 +170,12 @@ public class FrogAttack : MonoBehaviour
 
             if (grabbedBug != null)
             {
-               
 
+             
                 grabbedBug.transform.position = retractPosition; // Move the bug along with the tongue tip
-                AudioManager.instance.PlaySound(bugGrabSound);
+           
+               
+             
             }
 
             // Update the start position dynamically
@@ -188,15 +190,15 @@ public class FrogAttack : MonoBehaviour
         tongueLineRenderer.enabled = false; // Hide the tongue
         tongueTip.SetActive(false); // Hide the tongue tip
         canTongueAttack = true;
-
+     
         if (grabbedBug != null)
         {
             Bugs bugScript = grabbedBug.GetComponent<Bugs>();
 
             UIManager.instance.UpdateScore(bugScript.points);
             BugManager.instance.BugDestroyed(grabbedBug.GetComponent<Bugs>().bugSO, grabbedBug);
-
-         //   AudioManager.instance.PlaySound(bugEatSound); // Too much sound
+            
+            //   AudioManager.instance.PlaySound(bugEatSound); // Too much sound
             grabbedBug = null;
         }
        

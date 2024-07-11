@@ -71,9 +71,11 @@ public class UIManager : MonoBehaviour
     [Header("Audio Settings")]
     public AudioClip countDownAudio;
     public AudioClip goAudio;
-    public AudioClip gameOverAudio;
-    public AudioClip gameWinAudio;
- 
+    public AudioClip buttonClick;
+    public AudioClip stageComplete_1star;
+    public AudioClip stageComplete_2star;
+    public AudioClip stageComplete_3star;
+
 
 
     void Start()
@@ -170,6 +172,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(WaitToFadeInNextLevel());
         nextStageButton.SetActive(false);
         restartLevelButton.SetActive(false);
+        AudioManager.instance.PlaySound(buttonClick);
     }
     public void FadeOutRestartStage()
     {
@@ -177,7 +180,11 @@ public class UIManager : MonoBehaviour
         StartCoroutine(WaitToFadeInRestartLevel());
         nextStageButton.SetActive(false);
         restartLevelButton.SetActive(false);
+        AudioManager.instance.PlaySound(buttonClick);
+
+
     }
+   
     public void OnStageChangeScore(int currentStage, bool enabled)
     {
         if (enabled)
@@ -294,6 +301,8 @@ public class UIManager : MonoBehaviour
             pointPrompt.text = point.ToString();
             pointPrompt.color = Color.red;
         }
+
+
 
         pointPrompt.text = point.ToString();
         pointPrompt.transform.position = Camera.main.WorldToScreenPoint(offsetPosition); // Set the initial position of the point text

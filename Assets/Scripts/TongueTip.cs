@@ -9,7 +9,7 @@ public class TongueTip : MonoBehaviour
     {
         if (other.CompareTag("Bug") || other.CompareTag("EvilBug"))
         {
-          
+            AudioManager.instance.PlaySoundNoSkip(frogAttack.bugGrabSound);
             Debug.Log("Caught bug yum yum!");
 
             frogAttack.grabbedBug = other.gameObject; // Grab the bug
@@ -18,7 +18,8 @@ public class TongueTip : MonoBehaviour
             UIManager.instance.PointPrompt(bugPoint, other.transform);
             frogAttack.RetractTongue();
             frogAttack.isAttacking = false;
-        
+          
+
         }
     }
 }

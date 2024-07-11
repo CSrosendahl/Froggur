@@ -69,6 +69,7 @@ public class WaterAttackScript : MonoBehaviour
 
 
                 TurtleFriend.instance.PlayAnimation("HappyJump2");
+                AudioManager.instance.PlaySound(TurtleFriend.instance.hitBirdSound);
                 Destroy(birdDeathEffect.gameObject, 1);
                 Destroy(birdGO);
   
