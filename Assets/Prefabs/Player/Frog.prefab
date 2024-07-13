@@ -233,7 +233,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.9, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.3}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4051171879017543477}
@@ -323,6 +323,8 @@ MonoBehaviour:
   tongueAttackSound: {fileID: 8300000, guid: e23331b8e74b8694781a430053e62e7f, type: 3}
   bugGrabSound: {fileID: 8300000, guid: 0081ed59fe43abd47b202a2cd380b120, type: 3}
   bugEatSound: {fileID: 8300000, guid: a0bbd106e8aebdc4e83686f84df2db01, type: 3}
+  evilBugEatSound: {fileID: 8300000, guid: 670bf3e99b8e34f42b7a7109c765120c, type: 3}
+  waterShootSound: {fileID: 8300000, guid: c5e47d0d4b855e64ab31a8fce5298419, type: 3}
   isAttacking: 0
   grabbedBug: {fileID: 0}
   layerMask:
