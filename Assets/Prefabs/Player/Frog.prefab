@@ -310,11 +310,12 @@ MonoBehaviour:
   tongueCollider: {fileID: 4633667952151134864}
   frogAnim: {fileID: 7006601975791808539}
   tongueSpeed: 35
-  retractSpeed: 0.5
+  retractSpeed: 0.4
+  tongueExtendOffSet: 3
   tongueAttackActive: 1
   canTongueAttack: 1
   waterAttackGO: {fileID: 7869623461835421046, guid: 27e40c8581fd1de47a0dabc40324d403, type: 3}
-  waterAttackForce: 15
+  waterAttackForce: 25
   waterBurstDelay: 0.1
   waterAttackCooldown: 2
   waterBurstAttacks: 1

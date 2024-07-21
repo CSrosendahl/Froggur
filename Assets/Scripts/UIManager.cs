@@ -408,11 +408,14 @@ public class UIManager : MonoBehaviour
 
     public void WaterAttackActive()
     {
+       
+
         if (frogAttackScript.waterAttackActive)
         {
             waterAttackImage.color = Color.grey;
         } else
         {
+          
             waterAttackImage.color = Color.white;
         }
     }

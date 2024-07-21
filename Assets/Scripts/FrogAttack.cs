@@ -15,8 +15,10 @@ public class FrogAttack : MonoBehaviour
     [Header("Tongue Settings")]
     public float tongueSpeed = 5f; // Speed at which the tongue extends
     public float retractSpeed = 0.5f; // Speed at which the tongue retracts
+    public float tongueExtendOffSet = 1.5f;
     public bool tongueAttackActive = true;
     public bool canTongueAttack = true;
+   
 
     // Water Attack Settings
     [Header("Water Attack Settings")]
@@ -123,7 +125,7 @@ public class FrogAttack : MonoBehaviour
         Vector3 direction = (targetPosition - tongueLineRenderer.GetPosition(0)).normalized;
 
         // Add a small offset (e.g., 0.5f) to the target position
-        Vector3 extendedTargetPosition = targetPosition + direction * 1.5f;
+        Vector3 extendedTargetPosition = targetPosition + direction * tongueExtendOffSet;
 
         Vector3 endPosition = Vector3.MoveTowards(tongueLineRenderer.GetPosition(1), extendedTargetPosition, tongueSpeed * Time.deltaTime);
 

@@ -115,6 +115,8 @@ public class AudioManager : MonoBehaviour
         allAudioMuted = !allAudioMuted;
         foreach (AudioSource source in audioSources)
         {
+        
+
             source.mute = allAudioMuted;
         }
 

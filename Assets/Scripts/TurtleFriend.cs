@@ -54,6 +54,11 @@ public class TurtleFriend : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (PauseManager.instance.IsPaused())
+        {
+            return;
+        }
+
         if (!isOnCooldown && BugsAvailable())
         {
          //   PlayAnimation("HappyJump");
@@ -65,6 +70,10 @@ public class TurtleFriend : MonoBehaviour
 
     private void Update()
     {
+        if(PauseManager.instance.IsPaused())
+        {
+            return;
+        }
         // Check for touch input
         if (Input.touchCount > 0)
         {
