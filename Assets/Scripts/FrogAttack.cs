@@ -44,6 +44,7 @@ public class FrogAttack : MonoBehaviour
 
     // UI Layer Mask
     public LayerMask layerMask; // Assign this in the inspector to the desired UI layer
+   
 
     void Start()
     {

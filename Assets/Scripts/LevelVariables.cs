@@ -11,6 +11,7 @@ public class LevelVariables
     public float birdSpawnDelay;
     public float birdRespawnInterval;
     public bool birdSpawnEnabled;
+    public int requiredPointsForNextLevel;
 
 
     public LevelVariables(float bugSpawnTime, float evilBugSpawnTime, bool canSpawnBird, float birdSpawnDelay, float birdRespawnInterval)

@@ -5,7 +5,13 @@ public class LevelScoreData : ScriptableObject
 {
     public int[] levelScores;
     public int overallScore;
+    public int lastPlayedLevel;
 
+    private void Awake()
+    {
+        overallScore = GetOverallScore();
+       
+    }
     public void Initialize(int numberOfLevels)
     {
         levelScores = new int[numberOfLevels];
@@ -67,4 +73,5 @@ public class LevelScoreData : ScriptableObject
     {
         return overallScore;
     }
+  
 }

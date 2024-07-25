@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
 
 
 
+
     [Header("Timer")]
    
 
@@ -76,18 +77,35 @@ public class UIManager : MonoBehaviour
     public AudioClip stageComplete_2star;
     public AudioClip stageComplete_3star;
 
+    [Header("Slider Settings")]
+    public Color customColor;
+    [HideInInspector] public int requiredPointsForNextLevel;
+    [HideInInspector] public Slider pointSlider;
+    [HideInInspector] public TextMeshProUGUI nextLevelText;
+    [HideInInspector] public TextMeshProUGUI pointsRequired;
+    [HideInInspector] public Animator textAnim;
+    private bool hasPlayedTextAnim;
+
+
 
 
     void Start()
     {
+        hasPlayedTextAnim = false;
         currentGameTime = gameTime;
         frogAttackScript.AttackState(false);
       //  bugsRemainingText.text = "Bugs Remaining: " + BugManager.instance.GetCurrentBugCount();
         scoreText.text = "Score: " + currentScore;
+      
+        UpdatePointSlider();
+      
+
     }
 
     private void Update()
     {
+        requiredPointsForNextLevel = LevelManager.instance.levelVariables[LevelManager.instance.currentLevel].requiredPointsForNextLevel; // Optimize this so it doesnt get called in update
+        pointsRequired.text = requiredPointsForNextLevel + " Points Required";
         UpdateTimer();
         CountDownTimer();
     }
@@ -172,6 +190,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(WaitToFadeInNextLevel());
         nextStageButton.SetActive(false);
         restartLevelButton.SetActive(false);
+      
         AudioManager.instance.PlaySound(buttonClick);
     }
     public void FadeOutRestartStage()
@@ -180,6 +199,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(WaitToFadeInRestartLevel());
         nextStageButton.SetActive(false);
         restartLevelButton.SetActive(false);
+        
         AudioManager.instance.PlaySound(buttonClick);
 
 
@@ -191,8 +211,15 @@ public class UIManager : MonoBehaviour
         {
             onChangeLevelGUI.SetActive(true);
             
-            nextStageButton.SetActive(true);
+          
+          
+           
+            if(currentScore >= requiredPointsForNextLevel)
+            {
+                nextStageButton.SetActive(true);
+            }
             restartLevelButton.SetActive(true);
+
 
             onStageGUIAnimator.Play("FadeInAnim");
             onStageChangeStageText.enabled = true;
@@ -228,6 +255,11 @@ public class UIManager : MonoBehaviour
             onChangeLevelGUI.SetActive(false);
             nextStageButton.SetActive(false);
             restartLevelButton.SetActive(false);
+
+         
+           
+
+
         }
     }
 
@@ -340,13 +372,43 @@ public class UIManager : MonoBehaviour
     {
         currentScore += points;
         DisplayScore();
+        UpdatePointSlider();
     }
 
     // Display current score
     public void DisplayScore()
     {
         scoreText.text = "Score: " + currentScore;
-      //  combinedScore.text = "Overall Score: " + LevelManager.instance.levelScoreData.GetOverallScore();
+      
+    }
+
+    public void UpdatePointSlider()
+    {
+        
+
+        pointSlider.maxValue = requiredPointsForNextLevel;
+        pointSlider.value = currentScore;
+
+        if (currentScore >= requiredPointsForNextLevel)
+        {
+
+
+            if (!hasPlayedTextAnim)
+            {
+               
+                textAnim.Play("NextLevelAnim");
+                Debug.Log("??");
+                AudioManager.instance.PlaySound(goAudio);
+                nextLevelText.color = customColor;
+                hasPlayedTextAnim = true;
+            }
+
+        }
+        else
+        {
+            hasPlayedTextAnim = false;
+            nextLevelText.color = Color.white;
+        }
     }
 
     #region IEnumerators/ResetScore
@@ -373,6 +435,7 @@ public class UIManager : MonoBehaviour
     {
         currentScore = 0;
         scoreText.text = "Score: " + currentScore;
+        UpdatePointSlider();
     }
   
     #endregion
@@ -445,5 +508,10 @@ public class UIManager : MonoBehaviour
             frogAttackScript.canWaterAttack = true;
         }
        
+    }
+
+    public void DeleteAllRefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
