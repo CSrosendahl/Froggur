@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5bd7eef7a47527b4d8861448fd54181c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,6 +146,4 @@ MonoBehaviour:
   points: 0
   moveSpeed: 2
   changeDirectionInterval: 2
-  boundaryX: 9
-  boundaryY: 5
   bugSO: {fileID: 11400000, guid: 7d236547a3322d447a397625cdf85309, type: 2}

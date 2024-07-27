@@ -9,6 +9,9 @@ public class TongueTip : MonoBehaviour
     {
         if (other.CompareTag("Bug") || other.CompareTag("EvilBug"))
         {
+          
+          
+
             AudioManager.instance.PlaySoundNoSkip(frogAttack.bugGrabSound);
             Debug.Log("Caught bug yum yum!");
 

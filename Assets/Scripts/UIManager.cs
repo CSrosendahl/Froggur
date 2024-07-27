@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     private Coroutine floatingTextCoroutine; // Reference to the current coroutine
+   
 
     private void Awake()
     {
@@ -18,6 +19,9 @@ public class UIManager : MonoBehaviour
 
     [Header("Background")]
     public Image backgroundImage;
+
+    public Material test;
+    public GameObject testObject;
 
     [Header("Score")]
     public int currentScore = 0;
@@ -98,10 +102,14 @@ public class UIManager : MonoBehaviour
         scoreText.text = "Score: " + currentScore;
       
         UpdatePointSlider();
-      
+
+
+     
+
+
 
     }
-
+   
     private void Update()
     {
         requiredPointsForNextLevel = LevelManager.instance.levelVariables[LevelManager.instance.currentLevel].requiredPointsForNextLevel; // Optimize this so it doesnt get called in update
@@ -110,6 +118,7 @@ public class UIManager : MonoBehaviour
         CountDownTimer();
     }
 
+  
     #region Fader
     public void FadeOut(float duration)
     {

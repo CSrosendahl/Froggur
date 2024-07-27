@@ -77,7 +77,10 @@ public class BugManager : MonoBehaviour
 
         Vector2 spawnPosition = new Vector2(xPosition, yPosition);
 
-        Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
+        GameObject spawnedBug =  Instantiate(bugPrefabs[bugIndex], spawnPosition, Quaternion.identity);
+        //  ShaderManager.instance.GlowShader(spawnedBug);
+
+      
 
         currentBugCount++;
         // UIManager.instance.bugsRemainingText.text = "Bugs Remaining: " + GetCurrentBugCount();

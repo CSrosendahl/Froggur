@@ -54,6 +54,9 @@ public class FrogAttack : MonoBehaviour
 
         tongueTip.SetActive(false); // Hide the tongue tip initially
         tongueCollider.enabled = false; // Disable the collider initially
+
+        
+      
     }
 
     void Update()
@@ -194,8 +197,17 @@ public class FrogAttack : MonoBehaviour
         tongueTip.SetActive(false); // Hide the tongue tip
         canTongueAttack = true;
      
+
+        // This is where we check if the bug is eaten (If the bug has reached the frogs mouth)
         if (grabbedBug != null)
         {
+            if(grabbedBug.CompareTag("EvilBug"))
+            {
+                ShaderManager.instance.AssignShaderMat(this.gameObject, ShaderManager.instance.frogEatEvilBugMat, true, 1.5f);
+                canTongueAttack = false;
+                StartCoroutine(ResetTongueAttack());
+            }
+
             Bugs bugScript = grabbedBug.GetComponent<Bugs>();
 
             UIManager.instance.UpdateScore(bugScript.points);
@@ -204,9 +216,12 @@ public class FrogAttack : MonoBehaviour
             //   AudioManager.instance.PlaySound(bugEatSound); // Too much sound
             grabbedBug = null;
         }
-       
-
-
+ 
+    }
+    IEnumerator ResetTongueAttack()
+    {
+        yield return new WaitForSeconds(1.5f);
+        canTongueAttack = true;
     }
 
     private IEnumerator WaterBurstAttack(Vector3 targetPosition)
