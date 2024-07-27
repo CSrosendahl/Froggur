@@ -19,6 +19,7 @@ public class TurtleFriend : MonoBehaviour
     public float catchDistance = 1f; // Distance at which the turtle catches the bug
     public float cooldownDuration = 5f; // Duration of the cooldown
     public float alphaChangeDuration = 1f; // Duration over which alpha changes
+    public bool isInteractable;
     private float cooldownTimer = 0f;
     private bool isOnCooldown = false;
 
@@ -26,6 +27,10 @@ public class TurtleFriend : MonoBehaviour
     private bool isEatingBugs = false;
     private Material turtleMaterial;
     private Color originalColor;
+
+    public GameObject portalGO;
+    public Animator portalAnim;
+  
 
     [Header("Audio")]
     public AudioClip eatSound;
@@ -36,8 +41,10 @@ public class TurtleFriend : MonoBehaviour
 
     private void Start()
     {
+        portalGO.SetActive(false);
         turtleMaterial = GetComponent<Renderer>().material;
         originalColor = turtleMaterial.color;
+        isInteractable = true;
     }
 
     public void PlayAnimation(string animationName)
@@ -54,29 +61,36 @@ public class TurtleFriend : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (PauseManager.instance.IsPaused())
+        if (PauseManager.instance.IsPaused() )
         {
             return;
+        }
+        if (isInteractable)
+        {
+            PlayAnimation("HappyJump");
+            AudioManager.instance.PlaySoundNoSkip(interactSound);
         }
 
         if (!isOnCooldown && BugsAvailable())
         {
          //   PlayAnimation("HappyJump");
             StartEatingBugs();
+            isInteractable = false;
         }
-        PlayAnimation("HappyJump");
-        AudioManager.instance.PlaySoundNoSkip(interactSound);
+      
+        
     }
 
     private void Update()
     {
-        if(PauseManager.instance.IsPaused())
+        if(PauseManager.instance.IsPaused() )
         {
             return;
         }
         // Check for touch input
         if (Input.touchCount > 0)
         {
+          
             Touch touch = Input.GetTouch(0);
 
             // Check if the touch phase is Began (similar to mouse click)
@@ -89,13 +103,19 @@ public class TurtleFriend : MonoBehaviour
                 // Check if the ray hits this object's collider
                 if (Physics.Raycast(ray, out hit))
                 {
+                    if (isInteractable)
+                    {
+                        PlayAnimation("HappyJump");
+                        AudioManager.instance.PlaySoundNoSkip(interactSound);
+                    }
+
                     if (hit.transform == transform && !isOnCooldown && BugsAvailable())
                     {
                     
                         StartEatingBugs();
+                        isInteractable = false;
                     }
-                    PlayAnimation("HappyJump");
-                    AudioManager.instance.PlaySoundNoSkip(interactSound);
+                   
                 }
                
             }
@@ -107,7 +127,10 @@ public class TurtleFriend : MonoBehaviour
             if (cooldownTimer <= 0)
             {
                 isOnCooldown = false;
-                StartCoroutine(ChangeAlpha(0f, 1f, alphaChangeDuration)); // Fade in
+             //   StartCoroutine(ChangeAlpha(0f, 1f, alphaChangeDuration)); // Fade in // Could make this into an animation instead
+             
+                PortalFadeIn();
+               
                 AudioManager.instance.PlaySound(cooldownSound);
             }
         }
@@ -173,7 +196,10 @@ public class TurtleFriend : MonoBehaviour
         // Start cooldown
         isOnCooldown = true;
         cooldownTimer = cooldownDuration;
-        StartCoroutine(ChangeAlpha(1f, 0f, alphaChangeDuration)); // Fade out
+        StartCoroutine(ChangeAlpha(1f, 0f, alphaChangeDuration)); // Fade out // Could make this into an animation instead
+       
+
+
     }
 
     private void MoveTowardsBug(Transform bug)
@@ -218,4 +244,31 @@ public class TurtleFriend : MonoBehaviour
         color.a = endAlpha;
         turtleMaterial.color = color;
     }
+
+    public void PortalFadeIn()
+    {
+        portalGO.SetActive(true);
+
+        portalAnim.Play("PortalFaderIn");
+        StartCoroutine(WaitToSpawnTurtle());
+        StartCoroutine(WaitToDisable());
+    }
+   
+    
+  
+    IEnumerator WaitToDisable()
+    {
+        
+        yield return new WaitForSeconds(3.5f);
+        portalGO.SetActive(false);
+        
+    }
+    IEnumerator WaitToSpawnTurtle()
+    {
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(ChangeAlpha(0f, 1f, alphaChangeDuration)); // Fade in // Could make this into an animation instead
+        isInteractable = true;
+    }
+    
+
 }

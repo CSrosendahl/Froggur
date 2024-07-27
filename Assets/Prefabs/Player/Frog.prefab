@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 371837001721113968}
   - component: {fileID: 591989789641400185}
   - component: {fileID: 7006601975791808539}
+  - component: {fileID: 4761188390389380759}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -260,7 +261,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -314,11 +315,12 @@ MonoBehaviour:
   tongueExtendOffSet: 3
   tongueAttackActive: 1
   canTongueAttack: 1
+  catchBugParticle: {fileID: 1383026041435662124, guid: 2a4db7d92c768df4093c4d8a8c9e3b05, type: 3}
   waterAttackGO: {fileID: 7869623461835421046, guid: 27e40c8581fd1de47a0dabc40324d403, type: 3}
-  waterAttackForce: 25
+  waterAttackForce: 15
   waterBurstDelay: 0.1
   waterAttackCooldown: 2
-  waterBurstAttacks: 1
+  waterBurstAttacks: 2
   waterAttackActive: 0
   canWaterAttack: 1
   tongueAttackSound: {fileID: 8300000, guid: e23331b8e74b8694781a430053e62e7f, type: 3}
@@ -372,7 +374,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -483,3 +485,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4761188390389380759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712257214525959994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0

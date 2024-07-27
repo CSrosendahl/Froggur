@@ -16,6 +16,11 @@ public class TongueTip : MonoBehaviour
             Debug.Log("Caught bug yum yum!");
 
             frogAttack.grabbedBug = other.gameObject; // Grab the bug
+
+
+           Instantiate(frogAttack.catchBugParticle, other.transform.position, Quaternion.identity);
+            
+            
             int bugPoint = frogAttack.grabbedBug.GetComponent<Bugs>().points;
 
             UIManager.instance.PointPrompt(bugPoint, other.transform);

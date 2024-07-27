@@ -18,6 +18,7 @@ public class FrogAttack : MonoBehaviour
     public float tongueExtendOffSet = 1.5f;
     public bool tongueAttackActive = true;
     public bool canTongueAttack = true;
+    public GameObject catchBugParticle;
    
 
     // Water Attack Settings
