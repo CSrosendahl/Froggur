@@ -21,7 +21,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _FadeBurnGlow _FadeBurnTex _FadeBurnWidth
+  m_LockedProperties: _FadeBurnGlow _FadeBurnTex _FadeBurnWidth _GreyscaleBlend
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -112,7 +112,7 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _Alpha: 1
+    - _Alpha: 0.444
     - _AlphaCutoffValue: 0.25
     - _AlphaOutlineBlend: 0.578
     - _AlphaOutlineGlow: 16.1
@@ -151,19 +151,19 @@ Material:
     - _DstBlend: 0
     - _EditorDrawers: 6
     - _EnableExternalAlpha: 0
-    - _FadeAmount: 0.612
-    - _FadeBurnGlow: 175
+    - _FadeAmount: 0.419
+    - _FadeBurnGlow: 238
     - _FadeBurnTransition: 0.213
-    - _FadeBurnWidth: 0.501
+    - _FadeBurnWidth: 0.84
     - _FishEyeUvAmount: 0.35
-    - _FlickerAlpha: 0
-    - _FlickerFreq: 0.2
+    - _FlickerAlpha: 0.04
+    - _FlickerFreq: 3.6
     - _FlickerPercent: 0.05
     - _GhostBlend: 0.52
     - _GhostColorBoost: 0
     - _GhostTransparency: 0
-    - _GlitchAmount: 3
-    - _GlitchSize: 1
+    - _GlitchAmount: 10.4
+    - _GlitchSize: 3.86
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -178,8 +178,8 @@ Material:
     - _GrassRadialBend: 0.1
     - _GrassSpeed: 2
     - _GrassWind: 20
-    - _GreyscaleBlend: 1
-    - _GreyscaleLuminosity: 0
+    - _GreyscaleBlend: 0
+    - _GreyscaleLuminosity: 0.09
     - _GreyscaleOutline: 0
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
@@ -187,13 +187,13 @@ Material:
     - _HitEffectGlow: 5
     - _HologramBlend: 1
     - _HologramMaxAlpha: 0.75
-    - _HologramMinAlpha: 0.1
+    - _HologramMinAlpha: 0.276
     - _HologramStripesAmount: 0.1
-    - _HologramStripesSpeed: 4.5
+    - _HologramStripesSpeed: -19
     - _HologramUnmodAmount: 0
-    - _HsvBright: 1
+    - _HsvBright: 0.99
     - _HsvSaturation: 0.38
-    - _HsvShift: 236
+    - _HsvShift: 43
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 4
     - _InnerOutlineThickness: 1
@@ -207,7 +207,7 @@ Material:
     - _MotionBlurDist: 1.25
     - _MyDstMode: 10
     - _MySrcMode: 5
-    - _NegativeAmount: 0.616
+    - _NegativeAmount: 0.36
     - _OcclusionStrength: 1
     - _OffsetUvX: 0
     - _OffsetUvY: 0
@@ -284,14 +284,14 @@ Material:
     - _ColorSwapGreen: {r: 0.990566, g: 0.8189592, b: 0.07008721, a: 1}
     - _ColorSwapRed: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
+    - _FadeBurnColor: {r: 0.9622642, g: 0.9622642, b: 0.4765931, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0.23366857, g: 0.37897965, b: 0.8396226, a: 1}
     - _GradBotLeftCol: {r: 0, g: 0, b: 1, a: 1}
     - _GradBotRightCol: {r: 0, g: 1, b: 0, a: 1}
     - _GradTopLeftCol: {r: 1, g: 0, b: 0, a: 1}
     - _GradTopRightCol: {r: 1, g: 1, b: 0, a: 1}
-    - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GreyscaleTintColor: {r: 0.84954983, g: 0.8773585, b: 0.18623178, a: 1}
     - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
     - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
     - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}

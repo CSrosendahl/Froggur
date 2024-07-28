@@ -523,4 +523,11 @@ public class UIManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
+
+    public float GetCurrentGameTime()
+    {
+        
+        return currentGameTime;
+    
+    }
 }

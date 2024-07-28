@@ -12,22 +12,29 @@ public class BirdManager : MonoBehaviour
             instance = this;
         }
     }
-    public GameObject birdGO; // Reference to the bird GameObject
+   
     private float spawnInterval; // Interval in seconds between each bird spawn
 
     private bool canSpawn = false; // Flag to control spawning
 
      public Vector2 spawnAreaMin; // Minimum coordinates for the spawn area
      public Vector2 spawnAreaMax; // Maximum coordinates for the spawn area
+ 
 
     void Start()
     {
+        
+
         // Start the coroutine to spawn birds periodically
         StartCoroutine(SpawnBirdsPeriodically(spawnInterval));
     }
 
+  
+
     public void SpawnBird(bool canSpawn, float spawnInterval)
     {
+       
+
         this.canSpawn = canSpawn;
 
         if (canSpawn)
@@ -50,8 +57,9 @@ public class BirdManager : MonoBehaviour
             float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
             float randomY = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
 
+            GameObject birdToSpawn = LevelManager.instance.levelVariables[LevelManager.instance.currentLevel].bird;
             // Instantiate the bird at the random location
-            Instantiate(birdGO, new Vector2(randomX, randomY), Quaternion.identity);
+            Instantiate(birdToSpawn, new Vector2(randomX, randomY), Quaternion.identity);
 
             // Wait for the specified interval before spawning the next bird
             yield return new WaitForSeconds(spawnTime);

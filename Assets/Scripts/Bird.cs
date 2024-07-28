@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    public BirdSO birdSO;
+
     [Header("Bird Chase Bugs")]
     public float catchDistance = 1f; // Distance at which the bird catches the bug
     public float catchBugInterval = 2f; // Interval for checking bugs and roaming
@@ -12,7 +14,7 @@ public class Bird : MonoBehaviour
     public float changeDirectionInterval = 2f; // Interval after which the bird changes direction
 
     [Header("Other options")]
-    public GameObject birdGO; // Reference to the bird GameObject
+   // public GameObject birdGO; // Reference to the bird GameObject
     public ParticleSystem birdDeathEffect;
     public int birdHealth = 1;
     public int birdPoints = 1;
@@ -27,9 +29,28 @@ public class Bird : MonoBehaviour
 
     void Start()
     {
+
+
+
+        InitBirdFromSO();
+
         CalculateScreenBoundaries();
         ChangeDirection(); // Set initial direction
         StartCoroutine(CheckForBugs()); // Start the coroutine to check for bugs
+    }
+    public void InitBirdFromSO()
+    {
+        
+
+        catchDistance = birdSO.catchDistance;
+        catchBugInterval= birdSO.catchBugInterval;
+        moveSpeed = birdSO.moveSpeed;
+        changeDirectionInterval = birdSO.changeDirectionInterval;
+        birdHealth = birdSO.birdHealth;
+        birdPoints = birdSO.birdPoints;
+       
+
+
     }
 
     void Update()

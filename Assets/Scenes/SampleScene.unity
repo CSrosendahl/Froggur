@@ -2799,7 +2799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d05136db2781654296a92a12fd697e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdGO: {fileID: 9036496373652272475, guid: dd2aa2b6ddc006e439e173908380c1d2, type: 3}
   spawnAreaMin: {x: 0, y: 5}
   spawnAreaMax: {x: 5, y: 0}
 --- !u!4 &884001864
@@ -4253,42 +4252,49 @@ MonoBehaviour:
     birdRespawnInterval: 25
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 1
+    bird: {fileID: 9036496373652272475, guid: dd2aa2b6ddc006e439e173908380c1d2, type: 3}
   - bugSpawnTime: 2
     evilBugSpawnTime: 6
     birdSpawnDelay: 5
     birdRespawnInterval: 25
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 5
+    bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 15
+    bird: {fileID: 7994540292421819761, guid: ab3e2821ade8b7e4cb13fe2d5cc6d939, type: 3}
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 0
+    bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 5
+    bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 0
+    bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
     requiredPointsForNextLevel: 0
+    bird: {fileID: 0}
   combinedScore: 0
 --- !u!4 &1570168721
 Transform:
@@ -4365,7 +4371,7 @@ MonoBehaviour:
   restartLevelButton: {fileID: 428978011}
   onChangeLevelGUI: {fileID: 3623364174575452680}
   onStageGUIAnimator: {fileID: 6946787571268739536}
-  gameTime: 45
+  gameTime: 15
   countDownToStart: 3
   timerText: {fileID: 771502413}
   countDownToStartText: {fileID: 117377671}
@@ -5870,6 +5876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3894567112261565798, guid: 1a7bef229b7ccaa4890ae7bd79d89d21, type: 3}
+      propertyPath: cooldownDuration
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4541426081050751965, guid: 1a7bef229b7ccaa4890ae7bd79d89d21, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6206,6 +6216,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 371837001721113968, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: catchBugParticle
+      value: 
+      objectReference: {fileID: 8110887556628150896, guid: 07c84b160827bd04dafe08fb7103184e, type: 3}
     - target: {fileID: 3915877615763290436, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

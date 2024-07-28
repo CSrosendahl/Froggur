@@ -124,7 +124,7 @@ public class TurtleFriend : MonoBehaviour
         if (isOnCooldown)
         {
             cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer <= 0)
+            if (cooldownTimer <= 0 ||UIManager.instance.GetCurrentGameTime() <= 0)
             {
                 isOnCooldown = false;
              //   StartCoroutine(ChangeAlpha(0f, 1f, alphaChangeDuration)); // Fade in // Could make this into an animation instead
