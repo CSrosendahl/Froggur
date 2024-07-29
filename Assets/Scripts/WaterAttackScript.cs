@@ -78,7 +78,43 @@ public class WaterAttackScript : MonoBehaviour
 
            
         }
-        AudioManager.instance.PlaySound(waterHitSound);
+
+        if (collision.gameObject.CompareTag("EvilFrog"))
+        {
+            FrogAttackAI frogScript = collision.gameObject.GetComponent<FrogAttackAI>();
+            int frogPoint = frogScript.points;
+
+            GameObject birdGO = collision.gameObject;
+
+            GameObject waterDropGO = this.gameObject;
+
+            frogScript.TakeDamage(1);
+
+            ParticleSystem splash = Instantiate(splashParticle, transform.position, Quaternion.identity);
+            splash.Play();
+
+            Destroy(splash.gameObject, splash.main.duration);
+            Destroy(waterDropGO);
+
+            if (frogScript.health <= 0)
+            {
+                ParticleSystem frogDeathEffect = Instantiate(frogScript.deathEffect, transform.position, Quaternion.identity);
+                frogDeathEffect.Play();
+
+
+                UIManager.instance.PointPrompt(frogPoint, collision.transform);
+                UIManager.instance.UpdateScore(frogPoint);
+
+
+                TurtleFriend.instance.PlayAnimation("HappyJump2");
+                AudioManager.instance.PlaySound(TurtleFriend.instance.hitBirdSound);
+                Destroy(frogDeathEffect.gameObject, 1);
+                Destroy(birdGO);
+
+            }
+        }
+
+            AudioManager.instance.PlaySound(waterHitSound);
 
     }
     IEnumerator WaitToPlayAnim(float waitTime)

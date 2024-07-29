@@ -183,14 +183,6 @@ public class Bird : MonoBehaviour
 
         birdHealth -= damage;
 
-        //if (birdHealth <= 0)
-        //{
-        //    // Handle bird death logic here
-        //    if (birdDeathEffect != null)
-        //    {
-        //        Instantiate(birdDeathEffect, transform.position, Quaternion.identity);
-        //    }
-        //    Destroy(birdGO);
-        //}
+    
     }
 }

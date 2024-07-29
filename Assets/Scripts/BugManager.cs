@@ -194,4 +194,11 @@ public class BugManager : MonoBehaviour
             Debug.Log("There are only wasps left in the scene.");
         }
     }
+
+    public int SetMaxBugs(int newMaxBugs)
+    {
+        
+        maxBugs = newMaxBugs;
+        return maxBugs;
+    }
 }

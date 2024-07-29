@@ -36,6 +36,7 @@ public class BirdManager : MonoBehaviour
        
 
         this.canSpawn = canSpawn;
+       
 
         if (canSpawn)
         {
@@ -49,7 +50,7 @@ public class BirdManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnBirdsPeriodically(float spawnTime)
+    public IEnumerator SpawnBirdsPeriodically(float spawnTime)
     {
         while (canSpawn)
         {

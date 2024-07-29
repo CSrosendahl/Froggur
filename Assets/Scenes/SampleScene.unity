@@ -603,7 +603,7 @@ MonoBehaviour:
   - {fileID: 7531721496143180468, guid: c0055f4a852a2984b863898312646e3a, type: 3}
   spawnIntervalFoodBug: 32
   spawnIntervalEvilBug: 55
-  maxBugs: 10
+  maxBugs: 50
   spawnAreaWidth: 10
   spawnAreaHeight: 5
   bugList: []
@@ -4248,53 +4248,74 @@ MonoBehaviour:
   levelVariables:
   - bugSpawnTime: 2
     evilBugSpawnTime: 8
+    maxBugs: 10
     birdSpawnDelay: 5
     birdRespawnInterval: 25
     birdSpawnEnabled: 1
+    bird: {fileID: 7994540292421819761, guid: ab3e2821ade8b7e4cb13fe2d5cc6d939, type: 3}
     requiredPointsForNextLevel: 1
-    bird: {fileID: 9036496373652272475, guid: dd2aa2b6ddc006e439e173908380c1d2, type: 3}
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 25
   - bugSpawnTime: 2
     evilBugSpawnTime: 6
+    maxBugs: 15
     birdSpawnDelay: 5
     birdRespawnInterval: 25
     birdSpawnEnabled: 1
-    requiredPointsForNextLevel: 5
     bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
+    requiredPointsForNextLevel: 5
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 0
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
+    maxBugs: 20
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
-    requiredPointsForNextLevel: 15
     bird: {fileID: 7994540292421819761, guid: ab3e2821ade8b7e4cb13fe2d5cc6d939, type: 3}
+    requiredPointsForNextLevel: 10
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 0
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
+    maxBugs: 25
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
-    requiredPointsForNextLevel: 0
     bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
+    requiredPointsForNextLevel: 15
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 0
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
+    maxBugs: 30
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
-    requiredPointsForNextLevel: 5
     bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
+    requiredPointsForNextLevel: 20
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 0
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
+    maxBugs: 35
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
-    requiredPointsForNextLevel: 0
     bird: {fileID: 9036496373652272475, guid: 5f13507a63c5c7948bb17464857951bf, type: 3}
+    requiredPointsForNextLevel: 25
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 0
   - bugSpawnTime: 1
     evilBugSpawnTime: 5
+    maxBugs: 40
     birdSpawnDelay: 5
     birdRespawnInterval: 15
     birdSpawnEnabled: 1
-    requiredPointsForNextLevel: 0
-    bird: {fileID: 0}
+    bird: {fileID: 9036496373652272475, guid: dd2aa2b6ddc006e439e173908380c1d2, type: 3}
+    requiredPointsForNextLevel: 30
+    frogEnemy_Enabled: 0
+    frogEnemy_Duration: 0
   combinedScore: 0
 --- !u!4 &1570168721
 Transform:
@@ -4371,7 +4392,7 @@ MonoBehaviour:
   restartLevelButton: {fileID: 428978011}
   onChangeLevelGUI: {fileID: 3623364174575452680}
   onStageGUIAnimator: {fileID: 6946787571268739536}
-  gameTime: 15
+  gameTime: 45
   countDownToStart: 3
   timerText: {fileID: 771502413}
   countDownToStartText: {fileID: 117377671}
@@ -4765,6 +4786,51 @@ RectTransform:
   m_AnchoredPosition: {x: -71, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1932429801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1932429803}
+  - component: {fileID: 1932429802}
+  m_Layer: 0
+  m_Name: FrogAIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1932429802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932429801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8162996c0899fc41bbea6a51718d7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyFrog_GO: {fileID: 6712257215681998706}
+--- !u!4 &1932429803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932429801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3134714, y: -0.79308987, z: -0.0537899}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2039637202
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,6 +5183,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090290273}
   m_CullTransparentMesh: 1
+--- !u!1 &2093148867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093148868}
+  m_Layer: 0
+  m_Name: -----MAYBE STUFF ----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093148868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093148867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3134714, y: -0.79308987, z: -0.0537899}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2094463870
 GameObject:
   m_ObjectHideFlags: 0
@@ -5291,6 +5388,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &512339501502780396
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258990368007066337, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250881480981351846, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_Name
+      value: EnemyFrog
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250881480981351846, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
 --- !u!1 &675775623392218961
 GameObject:
   m_ObjectHideFlags: 0
@@ -6268,6 +6426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog
       objectReference: {fileID: 0}
+    - target: {fileID: 6712257214525959994, guid: 4caef3519764e8a46bf3b949b57c5905, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6334,6 +6496,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &6712257215681998706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5250881480981351846, guid: 836a386439f72b141b84cfd9cce1d3ad, type: 3}
+  m_PrefabInstance: {fileID: 512339501502780396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6805104781315148862
 Transform:
   m_ObjectHideFlags: 0
@@ -6742,6 +6909,7 @@ SceneRoots:
   - {fileID: 147710591}
   - {fileID: 519420032}
   - {fileID: 295621486}
+  - {fileID: 1932429803}
   - {fileID: 1026600842}
   - {fileID: 592515989}
   - {fileID: 982700868}
@@ -6762,3 +6930,5 @@ SceneRoots:
   - {fileID: 4063597597980268420}
   - {fileID: 2039637204}
   - {fileID: 1096205267}
+  - {fileID: 2093148868}
+  - {fileID: 512339501502780396}
