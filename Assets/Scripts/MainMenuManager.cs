@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
   
+
+    public AudioSource audioSource;
+    public AudioSource backgroundSound;
     public GameObject resumeObject;
     public TextMeshProUGUI startGameText;
 
@@ -14,10 +18,27 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI currentScoreText;
 
     public AudioClip buttonClick;
+
+    private Dictionary<AudioClip, float> clipLastPlayedTime = new Dictionary<AudioClip, float>();
+    public float cooldownTime = 1.0f; // Cooldown time in seconds
+
+    private bool allAudioMuted = false;
+    private List<AudioSource> audioSources = new List<AudioSource>();
+
+    public Image toggleAllButtonImage;
     // start game button
 
     private void Start()
     {
+
+        // Find all AudioSource components in the scene and add them to the list
+        AudioSource[] sources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource source in sources)
+        {
+            audioSources.Add(source);
+        }
+
+
         int lastPlayedLevel = PlayerPrefs.GetInt("SavedLevel");
         int combinedScore = PlayerPrefs.GetInt("CombinedScore");
        
@@ -47,13 +68,7 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(WaitForButtonClick_StartGame());
         
     }
-    
-    //public void StartGame()
-    //{
-    //    // Load the game scene
-    //    SceneManager.LoadScene("SampleScene");
-    //}
-    // quit game button
+ 
     public void QuitGame()
     {
         // Quit the game
@@ -63,16 +78,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (PlayerPrefs.HasKey("SavedLevel"))
-        {
-          int lastPlayedLevel = PlayerPrefs.GetInt("SavedLevel");
-       
-         SceneManager.LoadScene("SampleScene");
-        
-
-
-
-        }
+     StartCoroutine(WaitForButtonClick_ResumeGame());
      
     }
    
@@ -85,7 +91,7 @@ public class MainMenuManager : MonoBehaviour
     
     IEnumerator WaitForButtonClick_StartGame()
     {
-        AudioManager.instance.PlaySound(buttonClick);
+        PlaySound(buttonClick);
         yield return new WaitForSeconds(0.5f);
         ResetPlayerPrefs();
         SceneManager.LoadScene("SampleScene");
@@ -93,18 +99,76 @@ public class MainMenuManager : MonoBehaviour
     }
     IEnumerator WaitForButtonClick_Options()
     {
-
+        PlaySound(buttonClick);
         yield return new WaitForSeconds(0.5f);
         
 
     }
     IEnumerator WaitForButtonClick_QuitGame()
     {
-
+        PlaySound(buttonClick);
         yield return new WaitForSeconds(0.5f);
         Application.Quit();
 
     }
+    IEnumerator WaitForButtonClick_ResumeGame()
+    {
+        PlaySound(buttonClick);
+        yield return new WaitForSeconds(0.5f);
+        if (PlayerPrefs.HasKey("SavedLevel"))
+        {
+            int lastPlayedLevel = PlayerPrefs.GetInt("SavedLevel");
 
+            SceneManager.LoadScene("SampleScene");
+
+
+        }
+
+    }
+    public void ToggleAllMute()
+    {
+
+
+        allAudioMuted = !allAudioMuted;
+        foreach (AudioSource source in audioSources)
+        {
+
+
+            source.mute = allAudioMuted;
+        }
+
+        if (allAudioMuted)
+        {
+            toggleAllButtonImage.color = Color.black;
+        }
+        else
+        {
+            toggleAllButtonImage.color = Color.yellow;
+        }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning("AudioClip is null, cannot play sound.");
+            return;
+        }
+
+        // Check if the clip has a cooldown time set and if it has been played recently
+        if (clipLastPlayedTime.ContainsKey(clip))
+        {
+            float lastPlayedTime = clipLastPlayedTime[clip];
+            if (Time.time - lastPlayedTime < cooldownTime)
+            {
+                Debug.LogWarning("AudioClip is still in cooldown, skipping.");
+                return;
+            }
+        }
+
+        // Play the clip and update the last played time
+        audioSource.PlayOneShot(clip);
+        clipLastPlayedTime[clip] = Time.time;
+    }
 
 }
