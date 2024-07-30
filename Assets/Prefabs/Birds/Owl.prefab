@@ -5032,7 +5032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4411cc8309344d40b9f74d0a7e68354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdSO: {fileID: 11400000, guid: a826e5f644142354196cd8b9c7795299, type: 2}
+  birdSO: {fileID: 11400000, guid: 68de882e8c6b93c4097408bcaec606a0, type: 2}
   catchDistance: 1
   catchBugInterval: 4
   moveSpeed: 3

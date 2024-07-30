@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39acd8e91bfedea47877cc7438e38e3e, type: 3}
-  m_Name: Tier0Bird
+  m_Name: Tier2Bird
   m_EditorClassIdentifier: 
   birdName: New bird
-  moveSpeed: 2
-  changeDirectionInterval: 4
-  birdHealth: 1
-  birdPoints: 1
+  moveSpeed: 4
+  changeDirectionInterval: 3
+  birdHealth: 2
+  birdPoints: 3
   catchDistance: 1
-  catchBugInterval: 2
+  catchBugInterval: 1

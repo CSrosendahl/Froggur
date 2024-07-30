@@ -146,6 +146,4 @@ MonoBehaviour:
   points: 0
   moveSpeed: 2
   changeDirectionInterval: 2
-  boundaryX: 9
-  boundaryY: 5
-  bugSO: {fileID: 11400000, guid: 832ece1144b6cc344b950a5cab9728f2, type: 2}
+  bugSO: {fileID: 11400000, guid: b99c941ecc5a44c4b81a92e31017a6f1, type: 2}

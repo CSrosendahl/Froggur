@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tier1Bird
   m_EditorClassIdentifier: 
   birdName: New bird
-  moveSpeed: 4
-  changeDirectionInterval: 2
+  moveSpeed: 3
+  changeDirectionInterval: 3
   birdHealth: 2
   birdPoints: 3
   catchDistance: 1
