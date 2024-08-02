@@ -1,0 +1,355 @@
+fileFormatVersion: 2
+guid: 3772c652fffd5a84e81de9744cad71e7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bird_7
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 107
+        width: 467
+        height: 866
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25ee53152c1afc049b807d496d6ff885
+      internalID: 1521393899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_83
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 402
+        width: 322
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7307c923fc919ad4da8bcbbffb6eee43
+      internalID: 1675051130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_87
+      rect:
+        serializedVersion: 2
+        x: 1392
+        y: 402
+        width: 322
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c24c7f5ba785d404fa1cea619b64093e
+      internalID: 987994772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Bird_0: 2026812057
+      Bird_1: 805827311
+      Bird_10: -1183132466
+      Bird_100: -996344332
+      Bird_101: -1253989608
+      Bird_102: -1338582641
+      Bird_103: -1483217614
+      Bird_104: -1129495371
+      Bird_105: -862189102
+      Bird_106: 216289412
+      Bird_107: 1549143063
+      Bird_108: -1408108824
+      Bird_109: -1599292878
+      Bird_11: 1692751700
+      Bird_110: 1914333205
+      Bird_111: -1400098445
+      Bird_112: -616151686
+      Bird_113: 307201918
+      Bird_114: -2027832855
+      Bird_115: 661474484
+      Bird_116: 1160879892
+      Bird_117: 1882945065
+      Bird_118: 1918207906
+      Bird_119: 1192979471
+      Bird_12: 2125237361
+      Bird_120: 2064163864
+      Bird_121: -2091974830
+      Bird_122: 1497280299
+      Bird_123: 350806247
+      Bird_124: -1578187863
+      Bird_125: -586470167
+      Bird_126: -1162445029
+      Bird_127: 335475063
+      Bird_128: 306260045
+      Bird_129: -2069832179
+      Bird_13: 533014667
+      Bird_130: -1979555245
+      Bird_131: -97615691
+      Bird_132: 438781363
+      Bird_133: 1255065175
+      Bird_134: 2096302395
+      Bird_135: -1812400547
+      Bird_136: 660850644
+      Bird_137: -457665497
+      Bird_138: 970036711
+      Bird_139: -1527961682
+      Bird_14: 2071300493
+      Bird_140: 458330453
+      Bird_141: -95141858
+      Bird_142: -223525804
+      Bird_143: -944296107
+      Bird_144: 340623353
+      Bird_145: 1524014215
+      Bird_146: -266388156
+      Bird_147: 1120287194
+      Bird_148: 131571231
+      Bird_149: -167613658
+      Bird_15: -1401071953
+      Bird_150: 651003480
+      Bird_151: -1532691846
+      Bird_152: 583742890
+      Bird_153: -1338370497
+      Bird_154: -1633215056
+      Bird_155: -2104158126
+      Bird_156: 234980190
+      Bird_157: -744546947
+      Bird_158: 478569381
+      Bird_159: -829996998
+      Bird_16: -2008004080
+      Bird_160: -178306652
+      Bird_161: 1897223410
+      Bird_162: -94238375
+      Bird_163: 1214725731
+      Bird_164: 545344488
+      Bird_17: 931367542
+      Bird_18: -1953415227
+      Bird_19: -995250542
+      Bird_2: -1986107833
+      Bird_20: -1967608344
+      Bird_21: -46530568
+      Bird_22: -309976908
+      Bird_23: -1786607309
+      Bird_24: -584993677
+      Bird_25: 416430233
+      Bird_26: 818321882
+      Bird_27: -32340348
+      Bird_28: -1270975692
+      Bird_29: -1246143318
+      Bird_3: 662003634
+      Bird_30: 1953340846
+      Bird_31: -247904012
+      Bird_32: -1775425081
+      Bird_33: -226517485
+      Bird_34: 1936187885
+      Bird_35: -921696008
+      Bird_36: -628814342
+      Bird_37: 252926491
+      Bird_38: 923246234
+      Bird_39: 492089630
+      Bird_4: -186715363
+      Bird_40: -1165960928
+      Bird_41: 1803251238
+      Bird_42: 1714294611
+      Bird_43: -1121001989
+      Bird_44: 796333456
+      Bird_45: -79409589
+      Bird_46: -1855671799
+      Bird_47: -1584758303
+      Bird_48: -844127315
+      Bird_49: -1109320720
+      Bird_5: -427071066
+      Bird_50: 1543475254
+      Bird_51: -1913208337
+      Bird_52: -41666098
+      Bird_53: 1716255331
+      Bird_54: -488392814
+      Bird_55: -1803154333
+      Bird_56: -576400544
+      Bird_57: 1319431593
+      Bird_58: 1693407468
+      Bird_59: -2105772532
+      Bird_6: -972103766
+      Bird_60: 1087911529
+      Bird_61: -1319035928
+      Bird_62: -1759978940
+      Bird_63: 1348576269
+      Bird_64: -1956407323
+      Bird_65: -1263570856
+      Bird_66: -1491265542
+      Bird_67: 1076987671
+      Bird_68: -1865853405
+      Bird_69: 1388717748
+      Bird_7: 1521393899
+      Bird_70: 96088035
+      Bird_71: -408532959
+      Bird_72: 709728074
+      Bird_73: 327822045
+      Bird_74: 1958690276
+      Bird_75: 750765831
+      Bird_76: -631621509
+      Bird_77: 1081735759
+      Bird_78: -1050668458
+      Bird_79: 231831819
+      Bird_8: -1490296168
+      Bird_80: 222680346
+      Bird_81: -598723896
+      Bird_82: 484641846
+      Bird_83: 1675051130
+      Bird_84: -1772273746
+      Bird_85: -79746831
+      Bird_86: 1670736788
+      Bird_87: 987994772
+      Bird_88: 1806833022
+      Bird_89: -1005183949
+      Bird_9: -1708828225
+      Bird_90: -1506467912
+      Bird_91: 315405309
+      Bird_92: -1334116680
+      Bird_93: -1515420969
+      Bird_94: -977366124
+      Bird_95: 1671358276
+      Bird_96: 1411444900
+      Bird_97: -280288206
+      Bird_98: 1899110133
+      Bird_99: -881409005
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

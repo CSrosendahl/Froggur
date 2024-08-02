@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd46e0f8ca315c54ead0e6460536b5be
+guid: 4479cf605ed08ad42b71d5678f64d0b2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,85 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mosquito_Bug_0
+      name: Bat_sliced_0
       rect:
         serializedVersion: 2
-        x: 257
-        y: 666
-        width: 171
-        height: 133
+        x: 553
+        y: 419
+        width: 239
+        height: 271
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d2b32195957964a8f183f71aa3c672
-      internalID: 1098513368
+      spriteID: 5b0686bf558dd97468df0867007ae50c
+      internalID: 1107509482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_1
+      name: Bat_sliced_4
       rect:
         serializedVersion: 2
-        x: 594
-        y: 437
-        width: 260
-        height: 393
+        x: 1124
+        y: 428
+        width: 251
+        height: 258
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bfb7bc5910dd643a0bf7c24c097859
-      internalID: 1564726035
+      spriteID: 280f4e52f0912e14582b41141e1a1e92
+      internalID: 394229605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_2
+      name: Bat_sliced_7
       rect:
         serializedVersion: 2
-        x: 1002
-        y: 620
-        width: 156
-        height: 151
+        x: 855
+        y: 385
+        width: 242
+        height: 299
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6cdbd45da287b429ba34292cf46453
-      internalID: -572555398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mosquito_Bug_3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 636
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0f7720710006e74d8cdf66bd3328fa8
-      internalID: 891768735
+      spriteID: 191f0e7f551f10b4899f775ab1692d00
+      internalID: 2145578667
       vertices: []
       indices: 
       edges: []
@@ -204,11 +183,37 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mosquito_Bug_0: 1098513368
-      Mosquito_Bug_1: 1564726035
-      Mosquito_Bug_2: -572555398
-      Mosquito_Bug_3: 891768735
-      Mosquito_Bug_4: 195240619
+      Bat_sliced_0: 1107509482
+      Bat_sliced_1: -835119549
+      Bat_sliced_10: 1573936881
+      Bat_sliced_11: -1104751073
+      Bat_sliced_12: 2078825579
+      Bat_sliced_13: -24281476
+      Bat_sliced_14: 1203129307
+      Bat_sliced_15: 1026676918
+      Bat_sliced_16: -1628211603
+      Bat_sliced_17: 224186459
+      Bat_sliced_18: 363188253
+      Bat_sliced_19: 452172490
+      Bat_sliced_2: -148648810
+      Bat_sliced_20: -664359538
+      Bat_sliced_21: 1576048432
+      Bat_sliced_22: 1478930059
+      Bat_sliced_23: -1363522826
+      Bat_sliced_24: -740012126
+      Bat_sliced_25: 1157700947
+      Bat_sliced_26: 1757958079
+      Bat_sliced_27: -1752045044
+      Bat_sliced_28: 1500920174
+      Bat_sliced_29: -2115536519
+      Bat_sliced_3: -260586648
+      Bat_sliced_30: 1686638211
+      Bat_sliced_4: 394229605
+      Bat_sliced_5: 1156634983
+      Bat_sliced_6: 329380767
+      Bat_sliced_7: 2145578667
+      Bat_sliced_8: -1569100655
+      Bat_sliced_9: 556516980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

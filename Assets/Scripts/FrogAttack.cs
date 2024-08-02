@@ -219,7 +219,7 @@ public class FrogAttack : MonoBehaviour
         }
  
     }
-    IEnumerator ResetTongueAttack()
+   public IEnumerator ResetTongueAttack()
     {
         yield return new WaitForSeconds(1.5f);
         canTongueAttack = true;

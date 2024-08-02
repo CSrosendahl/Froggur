@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd46e0f8ca315c54ead0e6460536b5be
+guid: 15ec5a887c6efba4086cc77babe7e2ca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,85 +110,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mosquito_Bug_0
+      name: Fly_0
       rect:
         serializedVersion: 2
-        x: 257
-        y: 666
-        width: 171
-        height: 133
+        x: 780
+        y: 869
+        width: 43
+        height: 55
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d2b32195957964a8f183f71aa3c672
-      internalID: 1098513368
+      spriteID: 83d724b9d02c0ad4c9698bd22e1dac15
+      internalID: 1043001099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_1
+      name: Fly_1
       rect:
         serializedVersion: 2
-        x: 594
-        y: 437
-        width: 260
-        height: 393
+        x: 971
+        y: 875
+        width: 72
+        height: 55
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bfb7bc5910dd643a0bf7c24c097859
-      internalID: 1564726035
+      spriteID: 88d227afa81120043ac3fab0a808bc15
+      internalID: -1528239217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_2
+      name: Fly_2
       rect:
         serializedVersion: 2
-        x: 1002
-        y: 620
+        x: 761
+        y: 491
+        width: 264
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33852150e6d4c448b5ac494fbd6735c
+      internalID: -499516858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fly_4
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 720
         width: 156
-        height: 151
+        height: 106
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6cdbd45da287b429ba34292cf46453
-      internalID: -572555398
+      spriteID: f07c41cb71edd69448d462fb0a52e1b2
+      internalID: -809310880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_3
+      name: Fly_6
       rect:
         serializedVersion: 2
-        x: 360
-        y: 636
-        width: 12
-        height: 12
+        x: 1110
+        y: 711
+        width: 146
+        height: 104
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f7720710006e74d8cdf66bd3328fa8
-      internalID: 891768735
+      spriteID: e0fd7a3a001f764408a0fe5968ad762e
+      internalID: 1108323616
       vertices: []
       indices: 
       edges: []
@@ -204,11 +225,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mosquito_Bug_0: 1098513368
-      Mosquito_Bug_1: 1564726035
-      Mosquito_Bug_2: -572555398
-      Mosquito_Bug_3: 891768735
-      Mosquito_Bug_4: 195240619
+      Fly_0: 1043001099
+      Fly_1: -1528239217
+      Fly_10: 443871491
+      Fly_11: -1070896491
+      Fly_12: -2038783291
+      Fly_13: -376086901
+      Fly_14: 1528175306
+      Fly_2: -499516858
+      Fly_3: 1482421520
+      Fly_4: -809310880
+      Fly_5: 909373852
+      Fly_6: 1108323616
+      Fly_7: 2112431674
+      Fly_8: 776415362
+      Fly_9: 443724078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

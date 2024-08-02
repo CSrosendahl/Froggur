@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd46e0f8ca315c54ead0e6460536b5be
+guid: fa40285f2035d554f81eee528bbceecf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,85 +110,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mosquito_Bug_0
+      name: Owl_0
       rect:
         serializedVersion: 2
-        x: 257
-        y: 666
-        width: 171
-        height: 133
+        x: 625
+        y: 84
+        width: 648
+        height: 938
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d2b32195957964a8f183f71aa3c672
-      internalID: 1098513368
+      spriteID: db80627e717464945852b0b1483b847e
+      internalID: -117527917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_1
+      name: Owl_14
       rect:
         serializedVersion: 2
-        x: 594
-        y: 437
-        width: 260
-        height: 393
+        x: 387
+        y: 648
+        width: 132
+        height: 144
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bfb7bc5910dd643a0bf7c24c097859
-      internalID: 1564726035
+      spriteID: 17a100312b1b9c44eb921b69a36731c8
+      internalID: -1070521373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_2
+      name: Owl_16
       rect:
         serializedVersion: 2
-        x: 1002
-        y: 620
-        width: 156
-        height: 151
+        x: 1397
+        y: 648
+        width: 133
+        height: 142
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6cdbd45da287b429ba34292cf46453
-      internalID: -572555398
+      spriteID: 0d0a3fb152966644cae16eaa918ed850
+      internalID: 1394309600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_3
+      name: Owl_17
       rect:
         serializedVersion: 2
-        x: 360
-        y: 636
-        width: 12
-        height: 12
+        x: 1500
+        y: 789
+        width: 6
+        height: 15
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f7720710006e74d8cdf66bd3328fa8
-      internalID: 891768735
+      spriteID: 20b8c35f1cd7f54478dbacd3fb4c8e17
+      internalID: -1068650361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Owl_18
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 756
+        width: 38
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06433bc59abe6eb45b58aa8c5d506b36
+      internalID: 1955039829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Owl_21
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 209
+        width: 172
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa4a3f77b50c4a48bd0894346f82485
+      internalID: 888869232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Owl_25
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 208
+        width: 175
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8776b4ed1edfe24cb791d9cb6b20578
+      internalID: 94918664
       vertices: []
       indices: 
       edges: []
@@ -204,11 +267,45 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mosquito_Bug_0: 1098513368
-      Mosquito_Bug_1: 1564726035
-      Mosquito_Bug_2: -572555398
-      Mosquito_Bug_3: 891768735
-      Mosquito_Bug_4: 195240619
+      Owl_0: -117527917
+      Owl_1: -266879522
+      Owl_10: 1774583526
+      Owl_11: 445334409
+      Owl_12: -1445419269
+      Owl_13: 1320993886
+      Owl_14: -1070521373
+      Owl_15: 1681568554
+      Owl_16: 1394309600
+      Owl_17: -1068650361
+      Owl_18: 1955039829
+      Owl_19: 1186464688
+      Owl_2: -1677605713
+      Owl_20: 1216309893
+      Owl_21: 888869232
+      Owl_22: 1240131512
+      Owl_23: 287807461
+      Owl_24: -675103807
+      Owl_25: 94918664
+      Owl_26: -2139857032
+      Owl_27: -1211399796
+      Owl_28: 1875423333
+      Owl_29: 920770152
+      Owl_3: 552640982
+      Owl_30: 849588126
+      Owl_31: -1874174147
+      Owl_32: 1920756941
+      Owl_33: 1855602904
+      Owl_34: -1797862674
+      Owl_35: 1907785209
+      Owl_36: 701135878
+      Owl_37: -1135894306
+      Owl_38: -1069355152
+      Owl_4: -1496176472
+      Owl_5: 1460488226
+      Owl_6: 442050193
+      Owl_7: 675525511
+      Owl_8: 2135772790
+      Owl_9: 496470446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

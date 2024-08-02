@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd46e0f8ca315c54ead0e6460536b5be
+guid: 990def2575800e94a9a2ce5c2ddb8837
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mosquito_Bug_0
+      name: Wasp_0
       rect:
         serializedVersion: 2
-        x: 257
+        x: 714
+        y: 672
+        width: 169
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 237b38a5f052d2a48879fab47dff415c
+      internalID: 1796446306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wasp_2
+      rect:
+        serializedVersion: 2
+        x: 946
         y: 666
-        width: 171
-        height: 133
+        width: 135
+        height: 145
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d2b32195957964a8f183f71aa3c672
-      internalID: 1098513368
+      spriteID: aae0095d3affd89429a5d8e203bab9bc
+      internalID: -253618653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_1
+      name: Wasp_10
       rect:
         serializedVersion: 2
-        x: 594
-        y: 437
-        width: 260
-        height: 393
+        x: 624
+        y: 612
+        width: 149
+        height: 94
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bfb7bc5910dd643a0bf7c24c097859
-      internalID: 1564726035
+      spriteID: 20590d548f685c7459ccb7314f973137
+      internalID: 62316375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_2
+      name: Wasp_11
       rect:
         serializedVersion: 2
-        x: 1002
-        y: 620
-        width: 156
-        height: 151
+        x: 774
+        y: 370
+        width: 261
+        height: 297
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6cdbd45da287b429ba34292cf46453
-      internalID: -572555398
+      spriteID: f10e89e2f686b3f42b0cfcee28cfa6e6
+      internalID: -267272860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mosquito_Bug_3
+      name: Wasp_12
       rect:
         serializedVersion: 2
-        x: 360
-        y: 636
-        width: 12
-        height: 12
+        x: 1062
+        y: 614
+        width: 147
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f7720710006e74d8cdf66bd3328fa8
-      internalID: 891768735
+      spriteID: 4e3603aa85a56ee42bfdd2be9d231395
+      internalID: 1338737871
       vertices: []
       indices: 
       edges: []
@@ -204,11 +225,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mosquito_Bug_0: 1098513368
-      Mosquito_Bug_1: 1564726035
-      Mosquito_Bug_2: -572555398
-      Mosquito_Bug_3: 891768735
-      Mosquito_Bug_4: 195240619
+      Wasp_0: 1796446306
+      Wasp_1: -571590192
+      Wasp_10: 62316375
+      Wasp_11: -267272860
+      Wasp_12: 1338737871
+      Wasp_2: -253618653
+      Wasp_3: -1492811354
+      Wasp_4: -1642306482
+      Wasp_5: -1108021503
+      Wasp_6: -1390612675
+      Wasp_7: -1964243726
+      Wasp_8: -1995508997
+      Wasp_9: 738661337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
